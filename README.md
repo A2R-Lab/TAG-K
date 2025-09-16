@@ -6,7 +6,7 @@ A Python library implementing the Tail-Averaged Greedy Kaczmarz Algorithm for on
 
 ### From Source
 ```bash
-git clone https://github.com/A2R-Lab/DeKA.git
+git clone https://github.com/A2R-Lab/TAG-K
 cd DeKA
 pip install -e .
 ```
@@ -106,9 +106,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 If you use this code in your research, please cite:
 ```bibtex
-@article{deka2025,
-    title={DeKA: The Deterministic Kaczmarz Algorithm with Greedy Selection and Smoothing for Online Inertial Parameter Estimation},
-    author={Chris Sha, Anupam Bhakta, Justin Jiang, Kevin Qiu, Brian Plancher},
+@article{tagk2025,
+    title={TAG-K: Tail-Averaged Greedy Kaczmarz for Computationally Efficient and Performant Online Inertial Parameter Estimation},
+    author={Shuo Sha, Anupam Bhakta, Zhenyuan Jiang, Kevin Qiu, Ishaan Mahajan, Gabriel Bravo, Brian Plancher},
     journal={arXiv preprint},
     year={2025}
 }
@@ -117,4 +117,4 @@ If you use this code in your research, please cite:
 ## Contact
 
 For questions and support:
-- GitHub Issues: [Create an issue](https://github.com/A2R-Lab/DeKA/issues)
+- GitHub Issues: [Create an issue](https://github.com/A2R-Lab/TAG-K/issues)
