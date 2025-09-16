@@ -7,7 +7,7 @@ A Python library implementing the Tail-Averaged Greedy Kaczmarz Algorithm for on
 ### From Source
 ```bash
 git clone https://github.com/A2R-Lab/TAG-K
-cd DeKA
+cd TAG-K
 pip install -e .
 ```
 
