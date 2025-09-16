@@ -1,7 +1,7 @@
 # TAG-K: Tail-Averaged Greedy Kaczmarz
 
 A Python library implementing the Tail-Averaged Greedy Kaczmarz Algorithm for online parameter estimation, optimized for quadrotor inertial parameter estimation.
-
+<!--
 ## Installation
 
 ### From Source
@@ -97,7 +97,7 @@ Options:
 - `--task`: hover, tracking
 - `--method`: DEKA, RLS, EKF
 - `--update_type`: immediate_update, late_update, never_update
-
+-->
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
