@@ -101,20 +101,3 @@ Options:
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-
-## Citation
-
-If you use this code in your research, please cite:
-```bibtex
-@article{tagk2025,
-    title={TAG-K: Tail-Averaged Greedy Kaczmarz for Computationally Efficient and Performant Online Inertial Parameter Estimation},
-    author={Shuo Sha, Anupam Bhakta, Zhenyuan Jiang, Kevin Qiu, Ishaan Mahajan, Gabriel Bravo, Brian Plancher},
-    journal={arXiv preprint},
-    year={2025}
-}
-```
-
-## Contact
-
-For questions and support:
-- GitHub Issues: [Create an issue](https://github.com/A2R-Lab/TAG-K/issues)
