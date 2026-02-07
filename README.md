@@ -1,103 +1,240 @@
-# TAG-K: Tail-Averaged Greedy Kaczmarz
+# TAG-K: Tail-Averaged Greedy Kaczmarz for Online Inertial Parameter Estimation
 
-A Python library implementing the Tail-Averaged Greedy Kaczmarz Algorithm for online parameter estimation, optimized for quadrotor inertial parameter estimation.
-<!--
-## Installation
+A Python library for **online inertial parameter estimation** in robotics,
+featuring the Tail-Averaged Greedy Randomized Kaczmarz (TAG-K) algorithm and
+a comprehensive suite of Kaczmarz-family solvers. Includes a full 13-state
+quaternion quadrotor simulator (modeled after the Crazyflie 2.1), an LQR
+controller, and tools for running closed-loop estimation experiments with
+payload-change events and sensor noise.
 
-### From Source
-```bash
-git clone https://github.com/A2R-Lab/TAG-K
-cd TAG-K
-pip install -e .
-```
+TAG-K combines greedy residual-driven row selection with tail averaging to
+achieve fast, stable parameter adaptation while retaining the low per-iteration
+complexity inherent to the Kaczmarz framework. As compared to RLS and KF
+baselines, TAG-K achieves:
 
-## Quick Start
+- **1.5x-1.9x faster** solve times on laptop-class CPUs
+- **4.8x-20.7x faster** solve times on embedded microcontrollers (Teensy 4.1)
+- **25% lower** estimation error
+- **~2x better** end-to-end tracking performance
 
-```python
-from deka import OnlineParamEst, visualize_trajectory_with_est
+For details, see our [ICRA 2026 paper](#citation).
 
-# Create parameter estimation instance
-estimator = OnlineParamEst()
-
-# Run simulation
-x_history, u_history, theta_history, theta_hat_history = (
-    estimator.simulate_quadrotor_hover_with_DEKA(
-        NSIM=300 # 300 simulation steps
-    )
-)
-
-# Visualize results
-visualize_trajectory_with_est(
-    x_history,  
-    u_history,
-    theta_history, 
-    theta_hat_history,
-    "Parameter Estimation Results"
-)
-```
+---
 
 ## Features
 
-- **Online Parameter Estimation**: Real-time parameter estimation for dynamic systems with support for:
-  - Sudden parameter changes (e.g., payload pickup)
-  - Gradual parameter drift
-  - Measurement noise handling
-  
-- **Multiple Estimation Methods**: 
-  - Deterministic Kaczmarz Algorithm (DeKA)
-  - Recursive Least Squares (RLS) 
-  - Extended Kalman Filter (EKF)
+- **Multiple estimation algorithms** -- from classic RLS and Kalman Filter to
+  Kaczmarz variants (RK, GRK, TAG-K, REK, and more)
+- **Quadrotor dynamics** -- 13-state (position, quaternion, velocity, angular
+  velocity) model with RK4 integration and autograd-based linearisation
+- **Double-pendulum dynamics** -- 4-state underactuated system
+- **LQR control** -- discrete-time infinite-horizon LQR with online re-linearisation
+- **Noise models** -- AWGN, Ornstein-Uhlenbeck, and random-walk process noise
+- **Trajectory generators** -- hover, figure-8, circle, Lissajous, ellipse,
+  helix, and spiral reference paths
+- **Simulation harness** -- run full closed-loop trials with payload
+  attach/detach, gated parameter updates, and data logging
+- **Visualization** -- 3-D trajectory plots, residual time-series, error CDFs
+- **Optional C++ backends** -- pybind11 wrappers for core estimators (RLS, KF,
+  RK, GRK, TARK, TAG-K) for higher throughput
 
-- **Quadrotor Dynamics**: Built-in support for quadrotor parameter estimation with:
-  - Full 6-DOF dynamics
-  - Real-time control
-  - Hover and trajectory tracking
+---
 
-- **Visualization Tools**: Comprehensive plotting utilities
+## Installation
 
-## Performance
+TAG-K requires **Python >= 3.10**.
 
-Based on empirical testing:
-
-- **Convergence Speed**: DeKA achieves ~7x faster convergence compared to base Kaczmarz methods
-- **Estimation Accuracy**: DeKA has 45% lower estimation error
-than start-of-the-art variants of RLS and KF 
-- **Parameter Tracking**: Superior tracking of sudden parameter changes (see examples)
-
-## API Documentation
-
-### DeKA Parameters
-
-```python
-DEKA(
-    num_params: int,
-    damping: float = 0.1,            # Update step damping (recommended: 0.1-1.0)
-    regularization: float = 1e-6,    # Numerical stability term
-    smoothing_factor: float = 0.9,   # Exponential smoothing (0: none, 1: max)
-    tol: float = 1e-3                # Convergence tolerance
-)
-```
-
-
-### Visualization
-
-The package includes three main visualization functions:
-- `visualize_trajectory()`: Plot position, inertia parameters, and controls
-- `visualize_trajectory_with_est()`: Compare true vs estimated parameters
-- `visualize_all_parameter()`: Detailed parameter tracking visualization
-
-## Command Line Interface
+### With uv (recommended)
 
 ```bash
-python -m deka.param_est --robot quadrotor --task hover --method DEKA
+git clone https://github.com/A2R-Lab/TAG-K.git
+cd TAG-K
+uv sync               # creates venv, installs deps
+uv sync --extra dev   # + pytest, ruff, pytest-cov
 ```
 
-Options:
-- `--robot`: quadrotor
-- `--task`: hover, tracking
-- `--method`: DEKA, RLS, EKF
-- `--update_type`: immediate_update, late_update, never_update
--->
+### With pip
+
+```bash
+git clone https://github.com/A2R-Lab/TAG-K.git
+cd TAG-K
+pip install -e ".[dev]"
+```
+
+### C++ backends (optional)
+
+Building the C++ extension requires a C++17 compiler, Eigen3, and pybind11:
+
+```bash
+pip install ./cpp
+```
+
+See [cpp/README.md](cpp/README.md) for details.
+
+---
+
+## Quick Start
+
+### Using an estimator directly
+
+Every estimator implements a single `iterate(A, b) -> x` interface:
+
+```python
+import numpy as np
+from online_estimators.estimators import TAGK  # the TAG-K algorithm
+
+# Overdetermined system  A x = b
+rng = np.random.default_rng(0)
+n = 5
+A = rng.standard_normal((50, n))
+x_true = rng.standard_normal(n)
+b = A @ x_true
+
+est = TAGK(n)
+for _ in range(500):
+    x_hat = est.iterate(A, b)
+
+print("Error:", np.linalg.norm(x_hat - x_true))
+```
+
+### Running a quadrotor trial
+
+```python
+from online_estimators.simulation.trial import run_single_trial
+
+result = run_single_trial(
+    estimator_name="tagk",         # TAG-K
+    base_seed=0,
+    seed_offset=0,
+    est_freq=20,                   # 50 Hz controller / 20 = 2.5 Hz estimator
+    window=5,
+    ref_type="figure8",
+    T_sim=20.0,
+    noise="low",
+)
+
+print("Failed:", result["failed"])
+```
+
+---
+
+## Package Structure
+
+```
+online_estimators/
+|-- __init__.py               # re-exports all estimators
+|-- estimators/
+|   |-- _backend.py           # optional C++ backend loader
+|   |-- base.py               # BaseEstimator ABC
+|   |-- rls.py                # Recursive Least Squares
+|   |-- kf.py                 # Kalman Filter
+|   |-- rk.py                 # RK, TARK, RK_ColScaled, RK_Equi, RK_Tikh, RK_EquiTikh
+|   |-- grk.py                # GRK, TAGK, GRK_Tikh, TAGK_Tikh
+|   |-- block.py              # FDBK, IGRK, MGRK, REK
+|-- dynamics/
+|   |-- quadrotor.py          # 13-state quaternion quadrotor (Crazyflie 2.1)
+|   |-- double_pendulum.py    # 4-state double pendulum
+|-- control/
+|   |-- lqr.py                # Discrete-time LQR
+|-- noise/
+|   |-- models.py             # AWGN, OU, RandomWalk, apply_noise()
+|-- trajectories/
+|   |-- generators.py         # 7 reference trajectories
+|-- simulation/
+|   |-- trial.py              # run_single_trial(), make_estimator()
+|   |-- utils.py              # residual helpers, closest_spd()
+|-- visualization/
+|   |-- plotting.py           # 3-D traj, residuals, CDFs
+|-- data/
+    |-- processing.py         # merge_npz() for experiment results
+```
+
+---
+
+## Estimators
+
+All estimators inherit from `BaseEstimator` and expose:
+
+```python
+x_hat = estimator.iterate(A, b)
+```
+
+where `A` is an `(m, n)` measurement matrix and `b` is an `(m,)` observation
+vector.
+
+| Class | Description |
+|---|---|
+| `RLS` | Recursive Least Squares with forgetting factor |
+| `KF` | Kalman Filter (parameters-as-state formulation) |
+| `RK` | Randomized Kaczmarz |
+| `TARK` | Tail-Averaged Randomized Kaczmarz |
+| `GRK` | Greedy Randomized Kaczmarz (max-residual row) |
+| `TAGK` | GRK + tail averaging (**TAG-K**) |
+| `GRK_Tikh` | GRK + Tikhonov regularisation |
+| `TAGK_Tikh` | GRK + tail averaging + Tikhonov |
+| `RK_ColScaled` | RK with column-norm scaling |
+| `RK_Equi` | RK with Ruiz equilibration |
+| `RK_Tikh` | RK + Tikhonov |
+| `RK_EquiTikh` | RK + Ruiz equilibration + Tikhonov |
+| `IGRK` | Block Greedy Kaczmarz (index-set greedy) |
+| `MGRK` | Momentum-accelerated GRK |
+| `REK` | Randomized Extended Kaczmarz (inconsistent systems) |
+| `FDBK` | Fully-Determined Block Kaczmarz |
+
+---
+
+## Testing and Code Quality
+
+```bash
+# run the full test suite
+pytest
+
+# with coverage
+pytest --cov=online_estimators --cov-report=term-missing
+
+# single module
+pytest tests/test_estimators.py -v
+
+# lint and format
+ruff check online_estimators/ tests/
+ruff format online_estimators/ tests/
+
+# type check
+ty check online_estimators/
+```
+
+---
+
+## Repository Layout
+
+| Path | Purpose |
+|---|---|
+| `online_estimators/` | Installable Python package |
+| `tests/` | pytest test suite (128 tests) |
+| `cpp/` | C++ estimator implementations + pybind11 bindings |
+| `python/` | Original research scripts (kept for reference) |
+| `*.ipynb` | Jupyter notebooks for exploration and plotting |
+
+---
+
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome. Please open an issue or submit a pull request.
+
+## License
+
+TBD
+
+## Citation
+
+If you use TAG-K in your research, please cite our ICRA 2026 paper:
+
+```bibtex
+@inproceedings{tagk2026,
+  title     = {TAG-K: Tail-Averaged Greedy Kaczmarz for Computationally
+               Efficient and Performant Online Inertial Parameter Estimation},
+  author    = {Shuo Sha and Anupam Bhakta and Zhenyuan Jiang and Kevin Qiu and Ishaan Mahajan and Gabriel Bravo and Brian Plancher},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2026}
+}
+```
