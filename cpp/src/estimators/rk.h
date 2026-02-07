@@ -20,6 +20,9 @@ public:
         const Eigen::Ref<const RowMatrixXd>& b,
         const std::optional<RowMatrixXd>& x0) override;
     
+    /// Seed the internal RNG for reproducibility.
+    void seed_rng(unsigned int seed) { rng_eng_.seed(seed); }
+
 private:
     std::mt19937 rng_eng_;
 };

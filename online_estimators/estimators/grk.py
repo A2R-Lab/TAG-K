@@ -136,6 +136,17 @@ class GRK(BaseEstimator):
             x0_col = self.x0.reshape(-1, 1) if x0 is not None else None
             self._cpp = _backend._CppGRK(num_params, float(default_tol), x0_col)
 
+    def seed_rng(self, seed: int) -> None:
+        """Seed the internal random engine for reproducibility.
+
+        Parameters
+        ----------
+        seed : int
+            Seed value.
+        """
+        if self._cpp is not None:
+            self._cpp.seed_rng(seed)
+
     def iterate(
         self,
         A: np.ndarray,
@@ -230,6 +241,17 @@ class TAGK(BaseEstimator):
         if _backend.HAS_CPP:
             x0_col = self.x0.reshape(-1, 1) if x0 is not None else None
             self._cpp = _backend._CppTAGK(num_params, int(burnin), float(default_tol), x0_col)
+
+    def seed_rng(self, seed: int) -> None:
+        """Seed the internal random engine for reproducibility.
+
+        Parameters
+        ----------
+        seed : int
+            Seed value.
+        """
+        if self._cpp is not None:
+            self._cpp.seed_rng(seed)
 
     def iterate(
         self,

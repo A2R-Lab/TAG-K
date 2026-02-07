@@ -115,6 +115,17 @@ class RK(BaseEstimator):
             x0_col = self.x0.reshape(-1, 1) if x0 is not None else None
             self._cpp = _backend._CppRK(num_params, x0_col)
 
+    def seed_rng(self, seed: int) -> None:
+        """Seed the internal random engine for reproducibility.
+
+        Parameters
+        ----------
+        seed : int
+            Seed value.
+        """
+        if self._cpp is not None:
+            self._cpp.seed_rng(seed)
+
     def iterate(self, A: np.ndarray, b: np.ndarray, eps: float = 1e-12) -> np.ndarray:
         """Run one epoch of randomized Kaczmarz sweeps.
 
@@ -193,6 +204,17 @@ class TARK(BaseEstimator):
         if _backend.HAS_CPP:
             x0_col = self.x0.reshape(-1, 1) if x0 is not None else None
             self._cpp = _backend._CppTARK(num_params, int(default_burnin), x0_col)
+
+    def seed_rng(self, seed: int) -> None:
+        """Seed the internal random engine for reproducibility.
+
+        Parameters
+        ----------
+        seed : int
+            Seed value.
+        """
+        if self._cpp is not None:
+            self._cpp.seed_rng(seed)
 
     def iterate(
         self, A: np.ndarray, b: np.ndarray, burnin: int = 0, eps: float = 1e-12

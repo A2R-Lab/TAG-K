@@ -60,25 +60,29 @@ PYBIND11_MODULE(_core, m) {
         .def(py::init<int, const std::optional<estim::RowMatrixXd>&>(),
              py::arg("n"), py::arg("x0"))
         .def("iterate", &estim::RK::iterate, py::arg("A"), py::arg("b"), py::arg("x0") = std::nullopt,
-             py::return_value_policy::reference_internal);
+             py::return_value_policy::reference_internal)
+        .def("seed_rng", &estim::RK::seed_rng, py::arg("seed"));
 
     py::class_<estim::GRK, estim::Estimator>(m, "GRK")
         .def(py::init<int, double, const std::optional<estim::RowMatrixXd>&>(),
              py::arg("n"), py::arg("tolerance"), py::arg("x0"))
         .def("iterate", &estim::GRK::iterate, py::arg("A"), py::arg("b"), py::arg("x0") = std::nullopt,
-             py::return_value_policy::reference_internal);
+             py::return_value_policy::reference_internal)
+        .def("seed_rng", &estim::GRK::seed_rng, py::arg("seed"));
 
     py::class_<estim::TARK, estim::Estimator>(m, "TARK")
         .def(py::init<int, int, const std::optional<estim::RowMatrixXd>&>(),
              py::arg("n"), py::arg("burnin_steps"), py::arg("x0"))
         .def("iterate", &estim::TARK::iterate, py::arg("A"), py::arg("b"), py::arg("x0") = std::nullopt,
-             py::return_value_policy::reference_internal);
+             py::return_value_policy::reference_internal)
+        .def("seed_rng", &estim::TARK::seed_rng, py::arg("seed"));
 
     py::class_<estim::TAGK, estim::Estimator>(m, "TAGK")
         .def(py::init<int, int, double, const std::optional<estim::RowMatrixXd>&>(),
              py::arg("n"), py::arg("burnin_steps"), py::arg("tolerance"), py::arg("x0"))
         .def("iterate", &estim::TAGK::iterate, py::arg("A"), py::arg("b"), py::arg("x0") = std::nullopt,
-             py::return_value_policy::reference_internal);
+             py::return_value_policy::reference_internal)
+        .def("seed_rng", &estim::TAGK::seed_rng, py::arg("seed"));
 
 #ifdef VERSION_INFO
     m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);

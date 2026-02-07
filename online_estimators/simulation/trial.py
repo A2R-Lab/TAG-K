@@ -39,7 +39,7 @@ from online_estimators.simulation.utils import abs_residual, closest_spd
 from online_estimators.trajectories.generators import TRAJECTORY_REGISTRY
 
 
-def make_estimator(name: str, theta0: np.ndarray, window: int):
+def make_estimator(name: str, theta0: np.ndarray, window: int, seed: int | None = None):
     """Instantiate an estimator by name.
 
     Parameters
@@ -51,6 +51,9 @@ def make_estimator(name: str, theta0: np.ndarray, window: int):
         Initial parameter estimate.
     window : int
         Number of stacked measurement rows (used for KF noise sizing).
+    seed : int or None
+        If provided, seed the internal RNG of randomised estimators for
+        reproducibility.
 
     Returns
     -------
@@ -104,7 +107,13 @@ def make_estimator(name: str, theta0: np.ndarray, window: int):
         raise ValueError(
             f"Unknown estimator '{name}'. Available: {sorted(registry)} + ['gt', 'none']"
         )
-    return registry[name]()
+    est = registry[name]()
+
+    # Seed internal RNG when the estimator supports it
+    if seed is not None and hasattr(est, "seed_rng"):
+        est.seed_rng(seed)
+
+    return est
 
 
 def gate_param_update(
@@ -247,7 +256,8 @@ def run_single_trial(
     payload_dr = rng.uniform(-0.001, 0.001, size=3)
 
     theta0 = quad.get_true_inertial_params()
-    est = make_estimator(estimator_name, theta0, window)
+    est_seed = int(rng.integers(0, 2**31))
+    est = make_estimator(estimator_name, theta0, window, seed=est_seed)
 
     A_buf: deque[np.ndarray] = deque(maxlen=window)
     B_buf: deque[np.ndarray] = deque(maxlen=window)
@@ -287,7 +297,7 @@ def run_single_trial(
             u = np.clip(ug + u_delta, 0.0, 1.0)
 
             x_true_next = quad.dynamics_rk4_true(x_true, u, dt=dt)
-            x_meas_next = apply_noise(x_true_next, level=noise)
+            x_meas_next = apply_noise(x_true_next, level=noise, rng=rng)
 
             dx_meas = (x_meas_next - x_meas) / dt
             A_mat = quad.get_data_matrix(x_meas, dx_meas)

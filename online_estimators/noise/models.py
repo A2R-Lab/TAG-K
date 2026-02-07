@@ -10,7 +10,11 @@ from __future__ import annotations
 import numpy as np
 
 
-def apply_noise(x: np.ndarray, level: str = "none") -> np.ndarray:
+def apply_noise(
+    x: np.ndarray,
+    level: str = "none",
+    rng: np.random.Generator | None = None,
+) -> np.ndarray:
     """Apply position/velocity noise to a 13-dimensional quadrotor state.
 
     Parameters
@@ -19,6 +23,9 @@ def apply_noise(x: np.ndarray, level: str = "none") -> np.ndarray:
         State vector ``[r(3), q(4), v(3), omega(3)]``.
     level : str
         One of ``"none"``, ``"low"``, ``"medium"``, ``"high"``.
+    rng : np.random.Generator, optional
+        Random number generator.  Falls back to the global NumPy RNG
+        when *None*.
 
     Returns
     -------
@@ -38,8 +45,12 @@ def apply_noise(x: np.ndarray, level: str = "none") -> np.ndarray:
         raise ValueError(f"Unknown noise level '{level}'. Choose from {list(noise_cfg)}")
 
     pos_std, vel_std = noise_cfg[level]
-    x_noisy[0:3] += np.random.normal(0.0, pos_std, size=3)
-    x_noisy[7:10] += np.random.normal(0.0, vel_std, size=3)
+    if rng is not None:
+        x_noisy[0:3] += rng.normal(0.0, pos_std, size=3)
+        x_noisy[7:10] += rng.normal(0.0, vel_std, size=3)
+    else:
+        x_noisy[0:3] += np.random.normal(0.0, pos_std, size=3)
+        x_noisy[7:10] += np.random.normal(0.0, vel_std, size=3)
     return x_noisy
 
 
