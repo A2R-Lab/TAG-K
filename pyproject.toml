@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "online-estimators"
+version = "0.1.0"
+description = "TAG-K: Tail-Averaged Greedy Kaczmarz for online parameter estimation in robotics"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "A2R Lab" },
+]
+keywords = [
+    "parameter-estimation",
+    "kaczmarz",
+    "quadrotor",
+    "robotics",
+    "online-learning",
+    "recursive-least-squares",
+    "kalman-filter",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "autograd>=1.7",
+    "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/A2R-Lab/TAG-K"
+Repository = "https://github.com/A2R-Lab/TAG-K"
+Issues = "https://github.com/A2R-Lab/TAG-K/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["online_estimators"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.ty.environment]
+python-version = "3.12"
