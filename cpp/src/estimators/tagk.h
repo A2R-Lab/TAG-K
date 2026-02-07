@@ -6,17 +6,17 @@
 
 namespace estim {
 
-struct TAGRK : public Estimator {
+struct TAGK : public Estimator {
 public:
-    // Constructs TAGRK estimator.
+    // Constructs TAGK estimator.
     // Params:
     //     n:
     //     burnin_steps:
     //     tolerance:
     //     x0:
-    TAGRK(int n, int burnin_steps, double tolerance, const std::optional<RowMatrixXd>& x0 = std::nullopt);
+    TAGK(int n, int burnin_steps, double tolerance, const std::optional<RowMatrixXd>& x0 = std::nullopt);
 
-    // Iterate method implementation for TAGRK.
+    // Iterate method implementation for TAGK.
     RowMatrixXd iterate(
         const Eigen::Ref<const RowMatrixXd>& A,
         const Eigen::Ref<const RowMatrixXd>& b,

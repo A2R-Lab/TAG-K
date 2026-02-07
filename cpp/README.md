@@ -15,7 +15,7 @@ pip install .
 ## Usage
 The estimators can be imported like python classes:
 ```python
-from online_estimation._core import RLS, RLS_Robust, KF, KF_Robust, RK, GRK, TARK, TAGRK
+from online_estimation._core import RLS, RLS_Robust, KF, KF_Robust, RK, GRK, TARK, TAGK
 ```
 
 Each estimator exposes an iterate method. For example, with the RLS estimator:

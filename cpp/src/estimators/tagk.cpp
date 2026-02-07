@@ -1,10 +1,10 @@
 #include <vector>
 
-#include "tagrk.h"
+#include "tagk.h"
 
 namespace estim {
 
-TAGRK::TAGRK(int n_params, int burnin_steps, double tolerance, const std::optional<RowMatrixXd>& x0)
+TAGK::TAGK(int n_params, int burnin_steps, double tolerance, const std::optional<RowMatrixXd>& x0)
     : Estimator(n_params, x0),
       burnin_steps_(burnin_steps),
       tolerance_(tolerance) {
@@ -19,7 +19,7 @@ TAGRK::TAGRK(int n_params, int burnin_steps, double tolerance, const std::option
     rng_eng_.seed(rd());
 }
 
-RowMatrixXd TAGRK::iterate(
+RowMatrixXd TAGK::iterate(
     const Eigen::Ref<const RowMatrixXd>& A,
     const Eigen::Ref<const RowMatrixXd>& b,
     const std::optional<RowMatrixXd>& x0) {

@@ -13,7 +13,7 @@ set(
   src/estimators/kf.cpp
   src/estimators/rk.cpp
   src/estimators/rls.cpp
-  src/estimators/tagrk.cpp
+  src/estimators/tagk.cpp
   src/estimators/tark.cpp
 )
 
@@ -26,6 +26,7 @@ pybind11_add_module(_core ${SOURCES})
 
 target_link_libraries(_core PRIVATE pybind11::headers Eigen3::Eigen Python::NumPy)
 target_include_directories(_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+target_compile_features(_core PRIVATE cxx_std_17)
 target_compile_definitions(_core PRIVATE VERSION_INFO=${PROJECT_VERSION})
 
 install(TARGETS _core DESTINATION ${SKBUILD_PROJECT_NAME})

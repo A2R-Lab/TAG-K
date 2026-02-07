@@ -8,7 +8,7 @@
 #include "estimators/kf.h"
 #include "estimators/rk.h"
 #include "estimators/rls.h"
-#include "estimators/tagrk.h"
+#include "estimators/tagk.h"
 #include "estimators/tark.h"
 
 #define STRINGIFY(x) #x
@@ -74,10 +74,10 @@ PYBIND11_MODULE(_core, m) {
         .def("iterate", &estim::TARK::iterate, py::arg("A"), py::arg("b"), py::arg("x0") = std::nullopt,
              py::return_value_policy::reference_internal);
 
-    py::class_<estim::TAGRK, estim::Estimator>(m, "TAGRK")
+    py::class_<estim::TAGK, estim::Estimator>(m, "TAGK")
         .def(py::init<int, int, double, const std::optional<estim::RowMatrixXd>&>(),
              py::arg("n"), py::arg("burnin_steps"), py::arg("tolerance"), py::arg("x0"))
-        .def("iterate", &estim::TAGRK::iterate, py::arg("A"), py::arg("b"), py::arg("x0") = std::nullopt,
+        .def("iterate", &estim::TAGK::iterate, py::arg("A"), py::arg("b"), py::arg("x0") = std::nullopt,
              py::return_value_policy::reference_internal);
 
 #ifdef VERSION_INFO
