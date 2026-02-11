@@ -1,0 +1,1335 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>online_estimators.dynamics.quadrotor &#8212; online_estimators</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=9f60eef9" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/online_estimators/dynamics/quadrotor';</script>
+    <link rel="canonical" href="http://a2r-lab.org/TAG-K/docs/_modules/online_estimators/dynamics/quadrotor.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">online_estimators</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/estimators.html">
+    Estimators
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/dynamics.html">
+    Dynamics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/control.html">
+    Control
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/noise.html">
+    Noise Models
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/trajectories.html">
+    Trajectories
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/simulation.html">
+    Simulation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../api/visualization.html">
+    Visualization
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../api/data.html">
+    Data Processing
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="http://a2r-lab.org/TAG-K">
+    Project Page
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/A2R-Lab/TAG-K">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/A2R-Lab/TAG-K" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/estimators.html">
+    Estimators
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/dynamics.html">
+    Dynamics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/control.html">
+    Control
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/noise.html">
+    Noise Models
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/trajectories.html">
+    Trajectories
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/simulation.html">
+    Simulation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/visualization.html">
+    Visualization
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/data.html">
+    Data Processing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="http://a2r-lab.org/TAG-K">
+    Project Page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/A2R-Lab/TAG-K">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/A2R-Lab/TAG-K" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">online_estimators.dynamics.quadrotor</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for online_estimators.dynamics.quadrotor</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Full 6-DOF quadrotor dynamics with inertial parameter management.</span>
+
+<span class="sd">This module implements a rigid-body quadrotor model with:</span>
+
+<span class="sd">- Separate *ground-truth* and *estimated* inertial parameters</span>
+<span class="sd">  (mass, center of mass, full 3x3 inertia tensor).</span>
+<span class="sd">- Newton-Euler data matrix/force vector for parameter estimation</span>
+<span class="sd">  (``A theta = b``).</span>
+<span class="sd">- Payload attach/detach via parallel-axis theorem.</span>
+<span class="sd">- Aerodynamic added-inertia and parameter drift utilities.</span>
+<span class="sd">- RK4 integration and autograd-based linearisation.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">norm</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">autograd.numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">autograd.numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">norm</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">autograd</span><span class="w"> </span><span class="kn">import</span> <span class="n">jacobian</span>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">QuadrotorDynamics</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rigid-body quadrotor with separate true/estimated inertial parameters.</span>
+
+<span class="sd">    The model uses a quaternion attitude representation</span>
+<span class="sd">    ``q = [q_w, q_x, q_y, q_z]`` and a 13-dimensional state vector:</span>
+
+<span class="sd">    ``x = [r(3), q(4), v(3), omega(3)]``</span>
+
+<span class="sd">    where ``r`` is the world-frame position, ``q`` the body-&gt;world</span>
+<span class="sd">    quaternion, ``v`` the world-frame linear velocity, and ``omega`` the</span>
+<span class="sd">    body-frame angular velocity.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    r_off : array-like or None</span>
+<span class="sd">        Initial body-frame COM offset (3-vector).  Defaults to zero.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nx : int</span>
+<span class="sd">        State dimension (12 after quaternion reduction).</span>
+<span class="sd">    nu : int</span>
+<span class="sd">        Control dimension (4 motors).</span>
+<span class="sd">    dt : float</span>
+<span class="sd">        Default integration time-step (1/freq).</span>
+<span class="sd">    freq : float</span>
+<span class="sd">        Control frequency in Hz.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># -- Class constants ----------------------------------------------</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r_off</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># -- Ground-truth parameters ----------------------------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.035</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">[</span><span class="mf">1.66e-5</span><span class="p">,</span> <span class="mf">0.83e-6</span><span class="p">,</span> <span class="mf">0.72e-6</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.83e-6</span><span class="p">,</span> <span class="mf">1.66e-5</span><span class="p">,</span> <span class="mf">1.8e-6</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.72e-6</span><span class="p">,</span> <span class="mf">1.8e-6</span><span class="p">,</span> <span class="mf">2.93e-5</span><span class="p">],</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">9.81</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thrustToTorque</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0008</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">el</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.046</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">65535</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.245365e-6</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">km</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">thrustToTorque</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="n">r_off</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r_off</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Baseline copies for reset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mass_base</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_base</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_J_base</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="c1"># Payload stack (LIFO)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_payloads</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">hover_thrust_true</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+        <span class="c1"># -- Estimated parameters (controller belief) -----------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mass_est</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">J_est</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_off_est</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="c1"># -- Timing ---------------------------------------------------</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">freq</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">50.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">freq</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nu</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>
+
+    <span class="c1"># ------------------------------------------------------------------</span>
+    <span class="c1"># True / estimated parameter accessors</span>
+    <span class="c1"># ------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="QuadrotorDynamics.set_true_inertial_params">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.set_true_inertial_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_true_inertial_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set ground-truth inertial parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        theta : np.ndarray, shape ``(10,)``</span>
+<span class="sd">            ``[m, m*cx, m*cy, m*cz, Ixx, Iyy, Izz, Ixy, Ixz, Iyz]``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cz</span><span class="p">,</span> <span class="n">Ixx</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Izz</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span> <span class="o">=</span> <span class="n">theta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span> <span class="o">=</span> <span class="n">m</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cz</span><span class="p">])</span> <span class="o">/</span> <span class="n">m</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">Ixx</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">],</span> <span class="p">[</span><span class="n">Ixy</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">],</span> <span class="p">[</span><span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">,</span> <span class="n">Izz</span><span class="p">]])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hover_thrust_true</span> <span class="o">=</span> <span class="p">(</span><span class="n">m</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.get_true_inertial_params">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_true_inertial_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_true_inertial_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the 10-vector of ground-truth inertial parameters.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(10,)``</span>
+<span class="sd">            ``[m, m*cx, m*cy, m*cz, Ixx, Iyy, Izz, Ixy, Ixz, Iyz]``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span>
+        <span class="n">J_mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span><span class="p">,</span>
+                <span class="o">*</span><span class="n">c</span><span class="p">,</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+            <span class="p">]</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.set_estimated_inertial_params">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.set_estimated_inertial_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_estimated_inertial_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the controller&#39;s believed inertial parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        theta : np.ndarray, shape ``(10,)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cz</span><span class="p">,</span> <span class="n">Ixx</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Izz</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span> <span class="o">=</span> <span class="n">theta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mass_est</span> <span class="o">=</span> <span class="n">m</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_off_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cz</span><span class="p">])</span> <span class="o">/</span> <span class="n">m</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">J_est</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">Ixx</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">],</span> <span class="p">[</span><span class="n">Ixy</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">],</span> <span class="p">[</span><span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">,</span> <span class="n">Izz</span><span class="p">]])</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.get_estimated_inertial_params">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_estimated_inertial_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_estimated_inertial_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the 10-vector of estimated inertial parameters.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(10,)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mass_est</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_off_est</span>
+        <span class="n">J_mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">J_est</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">mass_est</span><span class="p">,</span>
+                <span class="o">*</span><span class="n">c</span><span class="p">,</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="n">J_mat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+            <span class="p">]</span>
+        <span class="p">)</span></div>
+
+
+    <span class="c1"># ------------------------------------------------------------------</span>
+    <span class="c1"># Hover thrust helpers</span>
+    <span class="c1"># ------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="QuadrotorDynamics.get_hover_thrust_est">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_hover_thrust_est">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_hover_thrust_est</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Per-motor hover thrust from *estimated* mass.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mass_est</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.get_hover_thrust_true">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_hover_thrust_true">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_hover_thrust_true</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Per-motor hover thrust from *true* mass.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ------------------------------------------------------------------</span>
+    <span class="c1"># Core dynamics (parameterised)</span>
+    <span class="c1"># ------------------------------------------------------------------</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_dynamics_param</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">mass</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">J</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">r_off</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">wind_vec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute xdot given explicit inertial parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x : np.ndarray, shape ``(13,)``</span>
+<span class="sd">        u : np.ndarray, shape ``(4,)``</span>
+<span class="sd">        mass : float</span>
+<span class="sd">        J : np.ndarray, shape ``(3, 3)``</span>
+<span class="sd">        r_off : np.ndarray, shape ``(3,)``</span>
+<span class="sd">        wind_vec : np.ndarray or None, shape ``(3,)``</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(13,)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">/</span> <span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+        <span class="n">omg</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+        <span class="n">Qmat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">qtoQ</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+        <span class="n">dr</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="n">dq</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">@</span> <span class="n">omg</span>
+
+        <span class="n">F_th</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">]])</span> <span class="o">@</span> <span class="n">u</span>
+        <span class="n">dv_base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">mass</span><span class="p">)</span> <span class="o">*</span> <span class="n">Qmat</span> <span class="o">@</span> <span class="n">F_th</span>
+        <span class="k">if</span> <span class="n">wind_vec</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dv_base</span> <span class="o">=</span> <span class="n">dv_base</span> <span class="o">+</span> <span class="n">wind_vec</span>
+
+        <span class="n">c</span> <span class="o">=</span> <span class="n">mass</span> <span class="o">*</span> <span class="n">r_off</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">],</span>
+                    <span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">el</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">el</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span><span class="p">],</span>
+                    <span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">km</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">km</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">km</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">km</span><span class="p">],</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+            <span class="o">@</span> <span class="n">u</span>
+        <span class="p">)</span>
+
+        <span class="n">domg</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">hat</span><span class="p">(</span><span class="n">omg</span><span class="p">)</span> <span class="o">@</span> <span class="n">J</span> <span class="o">@</span> <span class="n">omg</span> <span class="o">+</span> <span class="n">tau</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">hat</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">@</span> <span class="n">dv_base</span><span class="p">)</span>
+        <span class="n">dv_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">r_off</span><span class="p">,</span> <span class="n">domg</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">omg</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">r_off</span><span class="p">,</span> <span class="n">omg</span><span class="p">))</span>
+        <span class="n">dv</span> <span class="o">=</span> <span class="n">dv_base</span> <span class="o">+</span> <span class="n">dv_c</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">dr</span><span class="p">,</span> <span class="n">dq</span><span class="p">,</span> <span class="n">dv</span><span class="p">,</span> <span class="n">domg</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_rk4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dyn</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">wind_vec</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;4th-order Runge-Kutta integrator with quaternion renormalisation.&quot;&quot;&quot;</span>
+        <span class="n">f1</span> <span class="o">=</span> <span class="n">dyn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">wind_vec</span><span class="p">)</span>
+        <span class="n">f2</span> <span class="o">=</span> <span class="n">dyn</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">f1</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">wind_vec</span><span class="p">)</span>
+        <span class="n">f3</span> <span class="o">=</span> <span class="n">dyn</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">f2</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">wind_vec</span><span class="p">)</span>
+        <span class="n">f4</span> <span class="o">=</span> <span class="n">dyn</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">f3</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">wind_vec</span><span class="p">)</span>
+        <span class="n">xn</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">dt</span> <span class="o">/</span> <span class="mf">6.0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">f1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">f2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">f3</span> <span class="o">+</span> <span class="n">f4</span><span class="p">)</span>
+        <span class="n">qn</span> <span class="o">=</span> <span class="n">xn</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">/</span> <span class="n">norm</span><span class="p">(</span><span class="n">xn</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">xn</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">qn</span><span class="p">,</span> <span class="n">xn</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">13</span><span class="p">]])</span>
+
+    <span class="c1"># ------------------------------------------------------------------</span>
+    <span class="c1"># Public: true vs. estimated dynamics</span>
+    <span class="c1"># ------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="QuadrotorDynamics.dynamics_true">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_true">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dynamics_true</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">wind_vec</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Continuous-time dynamics using *ground-truth* parameters.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dynamics_param</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span><span class="p">,</span> <span class="n">wind_vec</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.dynamics_rk4_true">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_rk4_true">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dynamics_rk4_true</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wind_vec</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;RK4 step using *ground-truth* parameters.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">dt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rk4</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dynamics_true</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">wind_vec</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.dynamics_est">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_est">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dynamics_est</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">wind_vec</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Continuous-time dynamics using *estimated* parameters.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dynamics_param</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mass_est</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">J_est</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_off_est</span><span class="p">,</span> <span class="n">wind_vec</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.dynamics_rk4_est">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_rk4_est">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dynamics_rk4_est</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wind_vec</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;RK4 step using *estimated* parameters.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">dt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rk4</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dynamics_est</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">wind_vec</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ------------------------------------------------------------------</span>
+    <span class="c1"># Linearisation</span>
+    <span class="c1"># ------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="QuadrotorDynamics.get_linearized_true">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_linearized_true">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_linearized_true</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_ref</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u_ref</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Linearise true dynamics about ``(x_ref, u_ref)``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        A : np.ndarray, shape ``(12, 12)``</span>
+<span class="sd">        B : np.ndarray, shape ``(12, 4)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">A_j</span> <span class="o">=</span> <span class="n">jacobian</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dynamics_rk4_true</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">B_j</span> <span class="o">=</span> <span class="n">jacobian</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dynamics_rk4_true</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">A_j</span><span class="p">(</span><span class="n">x_ref</span><span class="p">,</span> <span class="n">u_ref</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">B_j</span><span class="p">(</span><span class="n">x_ref</span><span class="p">,</span> <span class="n">u_ref</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">(</span><span class="n">x_ref</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">A</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">(</span><span class="n">x_ref</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">(</span><span class="n">x_ref</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">B</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.get_linearized_est">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_linearized_est">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_linearized_est</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_ref</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u_ref</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Linearise estimated dynamics about ``(x_ref, u_ref)``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        A : np.ndarray, shape ``(12, 12)``</span>
+<span class="sd">        B : np.ndarray, shape ``(12, 4)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">A_j</span> <span class="o">=</span> <span class="n">jacobian</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dynamics_rk4_est</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">B_j</span> <span class="o">=</span> <span class="n">jacobian</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dynamics_rk4_est</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">A_j</span><span class="p">(</span><span class="n">x_ref</span><span class="p">,</span> <span class="n">u_ref</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">B_j</span><span class="p">(</span><span class="n">x_ref</span><span class="p">,</span> <span class="n">u_ref</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">(</span><span class="n">x_ref</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">A</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">(</span><span class="n">x_ref</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">(</span><span class="n">x_ref</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">B</span></div>
+
+
+    <span class="c1"># ------------------------------------------------------------------</span>
+    <span class="c1"># Newton-Euler data matrix and force vector</span>
+    <span class="c1"># ------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="QuadrotorDynamics.get_data_matrix">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_data_matrix">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">dx</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the 6x10 Newton-Euler data matrix ``A``.</span>
+
+<span class="sd">        Constructs the matrix such that ``A theta = w`` where</span>
+<span class="sd">        ``theta = [m, mcx, mcy, mcz, Ixx, Iyy, Izz, Ixy, Ixz, Iyz]``.</span>
+
+<span class="sd">        Forces and torques are expressed in the **body frame**.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x : np.ndarray, shape ``(13,)``</span>
+<span class="sd">            State ``[r, q, v, omega]``.</span>
+<span class="sd">        dx : np.ndarray, shape ``(13,)``</span>
+<span class="sd">            State derivative ``[rdot, q_dot, v_dot_world, alpha_body]``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(6, 10)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span>
+        <span class="n">Rwb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">qtoQ</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="n">Rbw</span> <span class="o">=</span> <span class="n">Rwb</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="n">a_w</span> <span class="o">=</span> <span class="n">dx</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+        <span class="n">a_b</span> <span class="o">=</span> <span class="n">Rbw</span> <span class="o">@</span> <span class="n">a_w</span>
+        <span class="n">g_b</span> <span class="o">=</span> <span class="n">Rbw</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">])</span>
+
+        <span class="n">ax_b</span><span class="p">,</span> <span class="n">ay_b</span><span class="p">,</span> <span class="n">az_b</span> <span class="o">=</span> <span class="n">a_b</span>
+        <span class="n">gx_b</span><span class="p">,</span> <span class="n">gy_b</span><span class="p">,</span> <span class="n">gz_b</span> <span class="o">=</span> <span class="n">g_b</span>
+        <span class="n">wx</span><span class="p">,</span> <span class="n">wy</span><span class="p">,</span> <span class="n">wz</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+        <span class="n">ax</span><span class="p">,</span> <span class="n">ay</span><span class="p">,</span> <span class="n">az</span> <span class="o">=</span> <span class="n">dx</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+
+        <span class="c1"># Expanded coefficients for omegax(omegaxc) + alphaxc</span>
+        <span class="n">f11</span><span class="p">,</span> <span class="n">f12</span><span class="p">,</span> <span class="n">f13</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">wy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">wz</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">wx</span> <span class="o">*</span> <span class="n">wy</span> <span class="o">-</span> <span class="n">az</span><span class="p">),</span> <span class="p">(</span><span class="n">wx</span> <span class="o">*</span> <span class="n">wz</span> <span class="o">+</span> <span class="n">ay</span><span class="p">)</span>
+        <span class="n">f21</span><span class="p">,</span> <span class="n">f22</span><span class="p">,</span> <span class="n">f23</span> <span class="o">=</span> <span class="p">(</span><span class="n">wx</span> <span class="o">*</span> <span class="n">wy</span> <span class="o">+</span> <span class="n">az</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">wx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">wz</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">wy</span> <span class="o">*</span> <span class="n">wz</span> <span class="o">-</span> <span class="n">ax</span><span class="p">)</span>
+        <span class="n">f31</span><span class="p">,</span> <span class="n">f32</span><span class="p">,</span> <span class="n">f33</span> <span class="o">=</span> <span class="p">(</span><span class="n">wx</span> <span class="o">*</span> <span class="n">wz</span> <span class="o">-</span> <span class="n">ay</span><span class="p">),</span> <span class="p">(</span><span class="n">wy</span> <span class="o">*</span> <span class="n">wz</span> <span class="o">+</span> <span class="n">ax</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">wx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">wy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">dax</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">daz</span> <span class="o">=</span> <span class="n">ax_b</span> <span class="o">-</span> <span class="n">gx_b</span><span class="p">,</span> <span class="n">ay_b</span> <span class="o">-</span> <span class="n">gy_b</span><span class="p">,</span> <span class="n">az_b</span> <span class="o">-</span> <span class="n">gz_b</span>
+
+        <span class="c1"># J alpha + omegax(J omega) contributions</span>
+        <span class="n">M_alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">[</span><span class="n">ax</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">ay</span><span class="p">,</span> <span class="n">az</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ay</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">az</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">az</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">ay</span><span class="p">],</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">cross_w</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">wy</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">wz</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">wz</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">wx</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">wx</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">wy</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+        <span class="n">M_gyro</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">cross_w</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">wx</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])),</span>
+                <span class="n">cross_w</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">wy</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])),</span>
+                <span class="n">cross_w</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">wz</span><span class="p">])),</span>
+                <span class="n">cross_w</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">wy</span><span class="p">,</span> <span class="n">wx</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])),</span>
+                <span class="n">cross_w</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">wz</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">wx</span><span class="p">])),</span>
+                <span class="n">cross_w</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">wz</span><span class="p">,</span> <span class="n">wy</span><span class="p">])),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+        <span class="c1"># Force rows (body frame)</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">dax</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">day</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">daz</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f11</span><span class="p">,</span> <span class="n">f12</span><span class="p">,</span> <span class="n">f13</span><span class="p">])</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f21</span><span class="p">,</span> <span class="n">f22</span><span class="p">,</span> <span class="n">f23</span><span class="p">])</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f31</span><span class="p">,</span> <span class="n">f32</span><span class="p">,</span> <span class="n">f33</span><span class="p">])</span>
+
+        <span class="c1"># Torque rows (body frame)</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">gz_b</span> <span class="o">-</span> <span class="n">az_b</span><span class="p">,</span> <span class="n">gy_b</span> <span class="o">-</span> <span class="n">ay_b</span><span class="p">],</span>
+                <span class="p">[</span><span class="n">az_b</span> <span class="o">-</span> <span class="n">gz_b</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">gx_b</span> <span class="o">-</span> <span class="n">ax_b</span><span class="p">],</span>
+                <span class="p">[</span><span class="n">ay_b</span> <span class="o">-</span> <span class="n">gy_b</span><span class="p">,</span> <span class="n">ax_b</span> <span class="o">-</span> <span class="n">gx_b</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">M_alpha</span> <span class="o">+</span> <span class="n">M_gyro</span>
+
+        <span class="k">return</span> <span class="n">A</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.get_force_vector">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_force_vector">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_force_vector</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">x_curr</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">dx</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u_curr</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build the 6x1 wrench vector ``b`` (body frame).</span>
+
+<span class="sd">        The wrench is purely gravito-inertial (excludes motor forces),</span>
+<span class="sd">        matching :meth:`get_data_matrix` so that ``A theta = b``.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x_curr : np.ndarray, shape ``(13,)``</span>
+<span class="sd">        dx : np.ndarray, shape ``(13,)``</span>
+<span class="sd">        u_curr : np.ndarray or None</span>
+<span class="sd">            Unused; kept for API compatibility.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(6,)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">x_curr</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_curr</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span>
+        <span class="n">Rwb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">qtoQ</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="n">Rbw</span> <span class="o">=</span> <span class="n">Rwb</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="n">a_w</span> <span class="o">=</span> <span class="n">dx</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+        <span class="n">a_b</span> <span class="o">=</span> <span class="n">Rbw</span> <span class="o">@</span> <span class="n">a_w</span>
+        <span class="n">g_b</span> <span class="o">=</span> <span class="n">Rbw</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">])</span>
+
+        <span class="n">omega</span> <span class="o">=</span> <span class="n">x_curr</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">dx</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+
+        <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span>
+        <span class="n">J</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span>
+
+        <span class="n">delta_a_b</span> <span class="o">=</span> <span class="n">a_b</span> <span class="o">-</span> <span class="n">g_b</span>
+        <span class="n">f_coup</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+        <span class="n">f_b</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">delta_a_b</span> <span class="o">+</span> <span class="n">f_coup</span>
+
+        <span class="n">n_b</span> <span class="o">=</span> <span class="n">J</span> <span class="o">@</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">J</span> <span class="o">@</span> <span class="n">omega</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">m</span> <span class="o">*</span> <span class="n">delta_a_b</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">f_b</span><span class="p">,</span> <span class="n">n_b</span><span class="p">])</span></div>
+
+
+    <span class="c1"># ------------------------------------------------------------------</span>
+    <span class="c1"># Payload events</span>
+    <span class="c1"># ------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="QuadrotorDynamics.attach_payload">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.attach_payload">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">attach_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m_p</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">delta_r_p</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Attach a point-mass payload via the parallel-axis theorem.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        m_p : float</span>
+<span class="sd">            Payload mass.</span>
+<span class="sd">        delta_r_p : array-like, shape ``(3,)``</span>
+<span class="sd">            Body-frame position of the payload relative to the vehicle origin.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">m_old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span>
+        <span class="n">r_old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span>
+        <span class="n">J_old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span>
+
+        <span class="n">m_new</span> <span class="o">=</span> <span class="n">m_old</span> <span class="o">+</span> <span class="n">m_p</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">delta_r_p</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">r_new</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_old</span> <span class="o">*</span> <span class="n">r_old</span> <span class="o">+</span> <span class="n">m_p</span> <span class="o">*</span> <span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="n">m_new</span>
+        <span class="n">Jp</span> <span class="o">=</span> <span class="n">m_p</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span>
+        <span class="n">J_new</span> <span class="o">=</span> <span class="n">J_old</span> <span class="o">+</span> <span class="n">Jp</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">m_new</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span> <span class="o">=</span> <span class="n">r_new</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span> <span class="o">=</span> <span class="n">J_new</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_payloads</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">m_p</span><span class="p">),</span> <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="n">d</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hover_thrust_true</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.detach_payload">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.detach_payload">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">detach_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Detach (drop) the most recently attached payload.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        RuntimeError</span>
+<span class="sd">            If no payloads are attached.</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If removing the payload would yield non-positive mass.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_payloads</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No payload to detach.&quot;</span><span class="p">)</span>
+
+        <span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_payloads</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">m_p</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">],</span> <span class="n">entry</span><span class="p">[</span><span class="s2">&quot;d&quot;</span><span class="p">]</span>
+        <span class="n">m_old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span>
+        <span class="n">m_new</span> <span class="o">=</span> <span class="n">m_old</span> <span class="o">-</span> <span class="n">m_p</span>
+        <span class="k">if</span> <span class="n">m_new</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_payloads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Detaching payload would result in non-positive mass (</span><span class="si">{</span><span class="n">m_new</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">)</span>
+
+        <span class="n">r_new</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_old</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span> <span class="o">-</span> <span class="n">m_p</span> <span class="o">*</span> <span class="n">d</span><span class="p">)</span> <span class="o">/</span> <span class="n">m_new</span>
+        <span class="n">Jp</span> <span class="o">=</span> <span class="n">m_p</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span>
+        <span class="n">J_new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span> <span class="o">-</span> <span class="n">Jp</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">m_new</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span> <span class="o">=</span> <span class="n">r_new</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span> <span class="o">=</span> <span class="n">J_new</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hover_thrust_true</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kt</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span></div>
+
+
+    <span class="c1"># ------------------------------------------------------------------</span>
+    <span class="c1"># Inertia projection &amp; perturbations</span>
+    <span class="c1"># ------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="QuadrotorDynamics.closest_spd">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.closest_spd">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">closest_spd</span><span class="p">(</span><span class="n">theta</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Project the inertia sub-matrix of ``theta`` to the nearest SPD matrix.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        theta : np.ndarray, shape ``(10,)``</span>
+<span class="sd">        epsilon : float</span>
+<span class="sd">            Eigenvalue floor.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(10,)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">cz</span><span class="p">,</span> <span class="n">Ixx</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Izz</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span> <span class="o">=</span> <span class="n">theta</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">Ixx</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">],</span> <span class="p">[</span><span class="n">Ixy</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">],</span> <span class="p">[</span><span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">,</span> <span class="n">Izz</span><span class="p">]])</span>
+        <span class="n">A_sym</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">eigvals</span><span class="p">,</span> <span class="n">eigvecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">A_sym</span><span class="p">)</span>
+        <span class="n">eigvals_clamped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">eigvals</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">A_spd</span> <span class="o">=</span> <span class="n">eigvecs</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">eigvals_clamped</span><span class="p">)</span> <span class="o">@</span> <span class="n">eigvecs</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">m</span><span class="p">,</span>
+                <span class="n">cx</span><span class="p">,</span>
+                <span class="n">cy</span><span class="p">,</span>
+                <span class="n">cz</span><span class="p">,</span>
+                <span class="n">A_spd</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="n">A_spd</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">A_spd</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="n">A_spd</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">A_spd</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                <span class="n">A_spd</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+            <span class="p">]</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.aero_added_inertia">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.aero_added_inertia">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">aero_added_inertia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wind_vec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply aerodynamic added-inertia perturbation from a wind vector.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        wind_vec : np.ndarray, shape ``(3,)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mf">1e-6</span>
+        <span class="n">wind_speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">wind_vec</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">wind_speed</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">wind_dir</span> <span class="o">=</span> <span class="n">wind_vec</span> <span class="o">/</span> <span class="n">wind_speed</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">wind_dir</span><span class="p">,</span> <span class="n">wind_dir</span><span class="p">)</span>
+        <span class="n">deltaJ</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">wind_speed</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">P</span>
+        <span class="n">J</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span> <span class="o">+</span> <span class="n">deltaJ</span>
+        <span class="n">Ixx</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Izz</span> <span class="o">=</span> <span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">J</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span> <span class="o">=</span> <span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">J</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">J</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span>
+        <span class="n">Ixx</span> <span class="o">=</span> <span class="n">Iyy</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ixx</span> <span class="o">+</span> <span class="n">Iyy</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span><span class="p">,</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="n">Ixx</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Izz</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">])</span>
+        <span class="n">new_theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">closest_spd</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span> <span class="o">=</span> <span class="n">new_theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">new_c</span> <span class="o">=</span> <span class="n">new_theta</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span> <span class="o">=</span> <span class="n">new_c</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span>
+        <span class="n">Ixx</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Izz</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span> <span class="o">=</span> <span class="n">new_theta</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">Ixx</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">],</span> <span class="p">[</span><span class="n">Ixy</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">],</span> <span class="p">[</span><span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">,</span> <span class="n">Izz</span><span class="p">]])</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.add_drift">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.add_drift">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_drift</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">mass_std</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">inertia_std</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">com_std</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add Gaussian drift to true inertial parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mass_std : float</span>
+<span class="sd">            Standard deviation for mass drift.</span>
+<span class="sd">        inertia_std : float</span>
+<span class="sd">            Standard deviation for inertia-tensor element drift.</span>
+<span class="sd">        com_std : float</span>
+<span class="sd">            Standard deviation for center-of-mass drift.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">theta_true</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_true_inertial_params</span><span class="p">()</span>
+        <span class="n">m_true</span> <span class="o">=</span> <span class="n">theta_true</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">c_true</span> <span class="o">=</span> <span class="n">theta_true</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+        <span class="n">I_true</span> <span class="o">=</span> <span class="n">theta_true</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+
+        <span class="n">m_drift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">mass_std</span><span class="p">)</span>
+        <span class="n">c_drift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">com_std</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">I_drift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">inertia_std</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+        <span class="n">m_new</span> <span class="o">=</span> <span class="n">m_true</span> <span class="o">+</span> <span class="n">m_drift</span>
+        <span class="n">c_new</span> <span class="o">=</span> <span class="n">c_true</span> <span class="o">+</span> <span class="n">c_drift</span>
+        <span class="n">I_new</span> <span class="o">=</span> <span class="n">I_true</span> <span class="o">+</span> <span class="n">I_drift</span>
+        <span class="n">Ixx</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Izz</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span> <span class="o">=</span> <span class="n">I_new</span>
+        <span class="n">Ixx</span> <span class="o">=</span> <span class="n">Iyy</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ixx</span> <span class="o">+</span> <span class="n">Iyy</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">m_new</span><span class="p">,</span> <span class="o">*</span><span class="n">c_new</span><span class="p">,</span> <span class="n">Ixx</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Izz</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">])</span>
+        <span class="n">new_theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">closest_spd</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span> <span class="o">=</span> <span class="n">new_theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">new_c</span> <span class="o">=</span> <span class="n">new_theta</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_r_off_true</span> <span class="o">=</span> <span class="n">new_c</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mass_true</span>
+        <span class="n">Ixx</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Izz</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span> <span class="o">=</span> <span class="n">new_theta</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_J_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">Ixx</span><span class="p">,</span> <span class="n">Ixy</span><span class="p">,</span> <span class="n">Ixz</span><span class="p">],</span> <span class="p">[</span><span class="n">Ixy</span><span class="p">,</span> <span class="n">Iyy</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">],</span> <span class="p">[</span><span class="n">Ixz</span><span class="p">,</span> <span class="n">Iyz</span><span class="p">,</span> <span class="n">Izz</span><span class="p">]])</span></div>
+
+
+    <span class="c1"># ------------------------------------------------------------------</span>
+    <span class="c1"># Quaternion / rotation helpers (static &amp; class methods)</span>
+    <span class="c1"># ------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="QuadrotorDynamics.hat">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.hat">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hat</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Skew-symmetric matrix from 3-vector: ``hat(u) v == u x v``.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        v : np.ndarray, shape ``(3,)``</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(3, 3)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">]])</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.L">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.L">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">L</span><span class="p">(</span><span class="n">q</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Left-quaternion multiplication matrix: ``L(q) p == q (x) p``.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        q : np.ndarray, shape ``(4,)``</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(4, 4)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">s</span><span class="p">,</span> <span class="o">-</span><span class="n">v</span><span class="p">]),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">v</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">s</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">QuadrotorDynamics</span><span class="o">.</span><span class="n">hat</span><span class="p">(</span><span class="n">v</span><span class="p">)]),</span>
+            <span class="p">]</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.qtoQ">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.qtoQ">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">qtoQ</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Quaternion to 3x3 rotation matrix (body -&gt; world).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        q : np.ndarray, shape ``(4,)``</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(3, 3)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="bp">cls</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="bp">cls</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">@</span> <span class="bp">cls</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="bp">cls</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">@</span> <span class="bp">cls</span><span class="o">.</span><span class="n">H</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.G">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.G">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">G</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Quaternion kinematic Jacobian ``G(q) = L(q) H``.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        q : np.ndarray, shape ``(4,)``</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(4, 3)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">@</span> <span class="bp">cls</span><span class="o">.</span><span class="n">H</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.rptoq">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.rptoq">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rptoq</span><span class="p">(</span><span class="n">phi</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Rodrigues parameters (3-vector) -&gt; unit quaternion.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        phi : np.ndarray, shape ``(3,)``</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(4,)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">phi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">phi</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">phi</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.qtorp">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.qtorp">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">qtorp</span><span class="p">(</span><span class="n">q</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Unit quaternion -&gt; Rodrigues parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        q : np.ndarray, shape ``(4,)``</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(3,)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">/</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="QuadrotorDynamics.E">
+<a class="viewcode-back" href="../../../api/dynamics.html#online_estimators.dynamics.quadrotor.QuadrotorDynamics.E">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">E</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Block-diagonal embedding for reduced-state linearisation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        q : np.ndarray, shape ``(4,)``</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray, shape ``(13, 12)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">))]),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="bp">cls</span><span class="o">.</span><span class="n">G</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">))]),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">6</span><span class="p">)]),</span>
+            <span class="p">]</span>
+        <span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, A2R Lab.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

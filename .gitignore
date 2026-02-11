@@ -215,3 +215,6 @@ __pycache__/
 paper_plots/
 sorted_plots/
 output/
+
+# Website build output
+_site/

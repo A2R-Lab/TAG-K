@@ -1,0 +1,1566 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Estimators &#8212; online_estimators</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9f60eef9" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/estimators';</script>
+    <link rel="canonical" href="http://a2r-lab.org/TAG-K/docs/api/estimators.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dynamics" href="dynamics.html" />
+    <link rel="prev" title="online_estimators" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">online_estimators</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Estimators
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="dynamics.html">
+    Dynamics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="control.html">
+    Control
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="noise.html">
+    Noise Models
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="trajectories.html">
+    Trajectories
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="simulation.html">
+    Simulation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="visualization.html">
+    Visualization
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="data.html">
+    Data Processing
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="http://a2r-lab.org/TAG-K">
+    Project Page
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/A2R-Lab/TAG-K">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/A2R-Lab/TAG-K" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Estimators
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="dynamics.html">
+    Dynamics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="control.html">
+    Control
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="noise.html">
+    Noise Models
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="trajectories.html">
+    Trajectories
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="simulation.html">
+    Simulation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="visualization.html">
+    Visualization
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="data.html">
+    Data Processing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="http://a2r-lab.org/TAG-K">
+    Project Page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/A2R-Lab/TAG-K">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/A2R-Lab/TAG-K" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Estimators</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="estimators">
+<h1>Estimators<a class="headerlink" href="#estimators" title="Link to this heading">#</a></h1>
+<p>All estimators inherit from <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a>
+and expose a single <code class="docutils literal notranslate"><span class="pre">iterate(A,</span> <span class="pre">b)</span> <span class="pre">→</span> <span class="pre">x</span></code> interface.</p>
+<nav class="contents local" id="estimator-classes">
+<p class="topic-title">Estimator Classes</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#module-online_estimators.estimators.base" id="id1">Base Class</a></p></li>
+<li><p><a class="reference internal" href="#module-online_estimators.estimators.rls" id="id2">Recursive Least Squares</a></p></li>
+<li><p><a class="reference internal" href="#module-online_estimators.estimators.kf" id="id3">Kalman Filter</a></p></li>
+<li><p><a class="reference internal" href="#module-online_estimators.estimators.rk" id="id4">Randomized Kaczmarz Family</a></p></li>
+<li><p><a class="reference internal" href="#module-online_estimators.estimators.grk" id="id5">Greedy Randomized Kaczmarz Family</a></p></li>
+<li><p><a class="reference internal" href="#module-online_estimators.estimators.block" id="id6">Block Methods</a></p></li>
+<li><p><a class="reference internal" href="#module-online_estimators.estimators._backend" id="id7">C++ Backend Loader</a></p></li>
+</ul>
+</nav>
+<section id="module-online_estimators.estimators.base">
+<span id="base-class"></span><h2><a class="toc-backref" href="#id1" role="doc-backlink">Base Class</a><a class="headerlink" href="#module-online_estimators.estimators.base" title="Link to this heading">#</a></h2>
+<p>Abstract base class for all online parameter estimators.</p>
+<p>Every estimator in TAG-K follows the same <code class="docutils literal notranslate"><span class="pre">iterate(A,</span> <span class="pre">b)</span> <span class="pre">-&gt;</span> <span class="pre">theta</span></code> protocol,
+making them interchangeable in simulation loops and benchmarks.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.base.BaseEstimator">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.base.</span></span><span class="sig-name descname"><span class="pre">BaseEstimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/base.html#BaseEstimator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.base.BaseEstimator" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
+<p>Abstract base class for online parameter estimators.</p>
+<p>All estimators solve the overdetermined linear system <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">theta</span> <span class="pre">~=</span> <span class="pre">b</span></code>
+incrementally  –  each call to <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator.iterate" title="online_estimators.estimators.base.BaseEstimator.iterate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iterate()</span></code></a> ingests a new batch of
+rows and returns the current best estimate of <code class="docutils literal notranslate"><span class="pre">theta</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Dimension of the parameter vector <code class="docutils literal notranslate"><span class="pre">theta</span></code>.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.base.BaseEstimator.iterate">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/base.html#BaseEstimator.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.base.BaseEstimator.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Ingest a new measurement batch and return the updated estimate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>) – Measurement (regressor) matrix for this batch.</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>) – Observation vector for this batch.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updated parameter estimate <code class="docutils literal notranslate"><span class="pre">theta_hat</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-online_estimators.estimators.rls">
+<span id="recursive-least-squares"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Recursive Least Squares</a><a class="headerlink" href="#module-online_estimators.estimators.rls" title="Link to this heading">#</a></h2>
+<p>Recursive Least Squares (RLS) estimator with exponential forgetting.</p>
+<p>The RLS algorithm minimises a weighted least-squares cost where older
+measurements are exponentially down-weighted via a <em>forgetting factor</em>
+<code class="docutils literal notranslate"><span class="pre">lam</span> <span class="pre">in</span> <span class="pre">(0,</span> <span class="pre">1]</span></code>.  Smaller <code class="docutils literal notranslate"><span class="pre">lam</span></code> discounts old data more aggressively,
+yielding faster adaptation at the expense of higher variance.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.rls.RLS">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.rls.</span></span><span class="sig-name descname"><span class="pre">RLS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_hat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forgetting_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rls.html#RLS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rls.RLS" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Recursive Least Squares with exponential forgetting.</p>
+<p>The update equations are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_k &amp;= A_k P_{k-1} A_k^T + \lambda I \\
+K_k &amp;= P_{k-1} A_k^T S_k^{-1} \\
+\hat\theta_k &amp;= \hat\theta_{k-1} + K_k (b_k - A_k \hat\theta_{k-1}) \\
+P_k &amp;= (P_{k-1} - K_k A_k P_{k-1}) / \lambda\end{split}\]</div>
+<p>When the C++ extension <code class="docutils literal notranslate"><span class="pre">online_estimation</span></code> is installed, the iterate
+method delegates to a compiled implementation for better performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Dimension of the parameter vector.</p></li>
+<li><p><strong>theta_hat</strong> (<em>np.ndarray</em><em> or </em><em>None</em>) – Initial parameter estimate.  Defaults to zero.</p></li>
+<li><p><strong>forgetting_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Forgetting factor <code class="docutils literal notranslate"><span class="pre">lam</span></code>.  Typical range: <code class="docutils literal notranslate"><span class="pre">[0.2,</span> <span class="pre">1.0]</span></code>.</p></li>
+<li><p><strong>c</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Initial covariance scaling  –  <code class="docutils literal notranslate"><span class="pre">P_0</span> <span class="pre">=</span> <span class="pre">c</span> <span class="pre">*</span> <span class="pre">I</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">online_estimators.estimators</span><span class="w"> </span><span class="kn">import</span> <span class="n">RLS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">est</span> <span class="o">=</span> <span class="n">RLS</span><span class="p">(</span><span class="n">num_params</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">forgetting_factor</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.rls.RLS.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rls.html#RLS.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rls.RLS.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Perform one RLS update with a batch of measurements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>) – Regressor matrix.</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>) – Observation vector.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updated parameter estimate.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-online_estimators.estimators.kf">
+<span id="kalman-filter"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Kalman Filter</a><a class="headerlink" href="#module-online_estimators.estimators.kf" title="Link to this heading">#</a></h2>
+<p>Kalman Filter for parameter estimation (flipped model).</p>
+<p>In the “flipped-model” formulation the <em>parameters</em> are treated as the
+hidden state and the <em>measurements</em> provide an observation equation
+<code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">A</span> <span class="pre">theta</span> <span class="pre">+</span> <span class="pre">v</span></code>.  A constant-dynamics model <code class="docutils literal notranslate"><span class="pre">theta_{k+1}</span> <span class="pre">=</span> <span class="pre">theta_k</span> <span class="pre">+</span> <span class="pre">w</span></code> is
+assumed, making this a simple parameter-tracking filter.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.kf.KF">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.kf.</span></span><span class="sig-name descname"><span class="pre">KF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_noise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurement_noise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_hat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/kf.html#KF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.kf.KF" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Kalman Filter for online parameter estimation.</p>
+<p>State model:  <code class="docutils literal notranslate"><span class="pre">theta_{k+1}</span> <span class="pre">=</span> <span class="pre">theta_k</span> <span class="pre">+</span> <span class="pre">w_k</span></code>, with <code class="docutils literal notranslate"><span class="pre">w_k</span> <span class="pre">~</span> <span class="pre">N(0,</span> <span class="pre">Q)</span></code></p>
+<p>Observation:  <code class="docutils literal notranslate"><span class="pre">b_k</span> <span class="pre">=</span> <span class="pre">A_k</span> <span class="pre">theta_k</span> <span class="pre">+</span> <span class="pre">v_k</span></code>, with <code class="docutils literal notranslate"><span class="pre">v_k</span> <span class="pre">~</span> <span class="pre">N(0,</span> <span class="pre">R)</span></code></p>
+<p>When the C++ extension <code class="docutils literal notranslate"><span class="pre">online_estimation</span></code> is installed, the iterate
+method delegates to a compiled implementation for better performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Dimension of the parameter vector.</p></li>
+<li><p><strong>process_noise</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">n)</span></code>) – Process noise covariance <code class="docutils literal notranslate"><span class="pre">Q</span></code>.</p></li>
+<li><p><strong>measurement_noise</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">m)</span></code>) – Measurement noise covariance <code class="docutils literal notranslate"><span class="pre">R</span></code>.  Must match the number of
+rows in <code class="docutils literal notranslate"><span class="pre">A</span></code> at each call.</p></li>
+<li><p><strong>theta_hat</strong> (<em>np.ndarray</em><em> or </em><em>None</em>) – Initial estimate.  Defaults to zero.</p></li>
+<li><p><strong>c</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Initial covariance scaling  –  <code class="docutils literal notranslate"><span class="pre">P_0</span> <span class="pre">=</span> <span class="pre">c</span> <span class="pre">*</span> <span class="pre">I</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">online_estimators.estimators</span><span class="w"> </span><span class="kn">import</span> <span class="n">KF</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kf</span> <span class="o">=</span> <span class="n">KF</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">process_noise</span><span class="o">=</span><span class="mf">1e-3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">measurement_noise</span><span class="o">=</span><span class="mf">1e-4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <span class="n">kf</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.kf.KF.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/kf.html#KF.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.kf.KF.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Perform one predict-update cycle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>) – Observation matrix.</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>) – Measurement vector.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updated parameter estimate.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-online_estimators.estimators.rk">
+<span id="randomized-kaczmarz-family"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Randomized Kaczmarz Family</a><a class="headerlink" href="#module-online_estimators.estimators.rk" title="Link to this heading">#</a></h2>
+<p>Randomized Kaczmarz (RK) and its preconditioned/augmented variants.</p>
+<p>The basic Randomized Kaczmarz algorithm solves <code class="docutils literal notranslate"><span class="pre">Ax</span> <span class="pre">=</span> <span class="pre">b</span></code> by repeatedly
+projecting onto randomly selected hyperplanes defined by individual rows
+of <code class="docutils literal notranslate"><span class="pre">A</span></code>.  Rows are sampled proportional to their squared norm.</p>
+<p>This module provides:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#online_estimators.estimators.rk.RK" title="online_estimators.estimators.rk.RK"><code class="xref py py-class docutils literal notranslate"><span class="pre">RK</span></code></a>  –  vanilla randomized Kaczmarz</p></li>
+<li><p><a class="reference internal" href="#online_estimators.estimators.rk.TARK" title="online_estimators.estimators.rk.TARK"><code class="xref py py-class docutils literal notranslate"><span class="pre">TARK</span></code></a>  –  tail-averaged RK (Polyak averaging over the second half)</p></li>
+<li><p><a class="reference internal" href="#online_estimators.estimators.rk.RK_ColScaled" title="online_estimators.estimators.rk.RK_ColScaled"><code class="xref py py-class docutils literal notranslate"><span class="pre">RK_ColScaled</span></code></a>  –  column-scaled (right-preconditioned) RK</p></li>
+<li><p><a class="reference internal" href="#online_estimators.estimators.rk.RK_Equi" title="online_estimators.estimators.rk.RK_Equi"><code class="xref py py-class docutils literal notranslate"><span class="pre">RK_Equi</span></code></a>  –  Ruiz-equilibrated RK (left + right preconditioning)</p></li>
+<li><p><a class="reference internal" href="#online_estimators.estimators.rk.RK_Tikh" title="online_estimators.estimators.rk.RK_Tikh"><code class="xref py py-class docutils literal notranslate"><span class="pre">RK_Tikh</span></code></a>  –  Tikhonov-augmented RK (ridge-like regularisation)</p></li>
+<li><p><a class="reference internal" href="#online_estimators.estimators.rk.RK_EquiTikh" title="online_estimators.estimators.rk.RK_EquiTikh"><code class="xref py py-class docutils literal notranslate"><span class="pre">RK_EquiTikh</span></code></a>  –  Ruiz equilibration + Tikhonov augmentation</p></li>
+</ul>
+<dl class="py function">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.ruiz_equilibrate">
+<span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.rk.</span></span><span class="sig-name descname"><span class="pre">ruiz_equilibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#ruiz_equilibrate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.ruiz_equilibrate" title="Link to this definition">#</a></dt>
+<dd><p>Ruiz equilibration: iterative row/column scaling.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">(B,</span> <span class="pre">Dr,</span> <span class="pre">Dc)</span></code> such that <code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">diag(Dr)</span> <span class="pre">A</span> <span class="pre">diag(Dc)</span></code> is
+approximately doubly-stochastic in row/column norms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>iters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of Ruiz iterations.  5 is usually sufficient.</p></li>
+<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Small constant for numerical stability.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>B</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>) – Equilibrated matrix.</p></li>
+<li><p><strong>Dr</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>) – Row scaling factors.</p></li>
+<li><p><strong>Dc</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code>) – Column scaling factors.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.RK">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.rk.</span></span><span class="sig-name descname"><span class="pre">RK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#RK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.RK" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Classic Randomized Kaczmarz.</p>
+<p>At each call, performs <code class="docutils literal notranslate"><span class="pre">m</span></code> inner Kaczmarz sweeps (one per row in
+expectation) with row-norm-proportional sampling.</p>
+<p>When the C++ extension <code class="docutils literal notranslate"><span class="pre">online_estimation</span></code> is installed, the iterate
+method delegates to a compiled implementation for better performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Dimension of theta.</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>) – Initial iterate.  Defaults to zero.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">online_estimators.estimators</span><span class="w"> </span><span class="kn">import</span> <span class="n">RK</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rk</span> <span class="o">=</span> <span class="n">RK</span><span class="p">(</span><span class="n">num_params</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <span class="n">rk</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.RK.seed_rng">
+<span class="sig-name descname"><span class="pre">seed_rng</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#RK.seed_rng"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.RK.seed_rng" title="Link to this definition">#</a></dt>
+<dd><p>Seed the internal random engine for reproducibility.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Seed value.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.RK.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#RK.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.RK.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run one epoch of randomized Kaczmarz sweeps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Numerical stability constant.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.TARK">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.rk.</span></span><span class="sig-name descname"><span class="pre">TARK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_burnin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#TARK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.TARK" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Tail-Averaged Randomized Kaczmarz.</p>
+<p>Identical to <a class="reference internal" href="#online_estimators.estimators.rk.RK" title="online_estimators.estimators.rk.RK"><code class="xref py py-class docutils literal notranslate"><span class="pre">RK</span></code></a> but returns the Polyak average of the iterates
+<em>after</em> a configurable burn-in period.</p>
+<p>When the C++ extension <code class="docutils literal notranslate"><span class="pre">online_estimation</span></code> is installed, the iterate
+method delegates to a compiled implementation for better performance.
+Note that the C++ backend uses the <code class="docutils literal notranslate"><span class="pre">burnin</span></code> value from construction
+and ignores the per-call <code class="docutils literal notranslate"><span class="pre">burnin</span></code> argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>default_burnin</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Default burn-in value used by the C++ backend when available.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">online_estimators.estimators</span><span class="w"> </span><span class="kn">import</span> <span class="n">TARK</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">est</span> <span class="o">=</span> <span class="n">TARK</span><span class="p">(</span><span class="n">num_params</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">burnin</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.TARK.seed_rng">
+<span class="sig-name descname"><span class="pre">seed_rng</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#TARK.seed_rng"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.TARK.seed_rng" title="Link to this definition">#</a></dt>
+<dd><p>Seed the internal random engine for reproducibility.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Seed value.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.TARK.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burnin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#TARK.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.TARK.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run one epoch and return the tail-averaged iterate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>burnin</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of initial sweeps to discard before averaging.
+Ignored when the C++ backend is active (uses constructor value).</p></li>
+<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Numerical stability constant.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.RK_ColScaled">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.rk.</span></span><span class="sig-name descname"><span class="pre">RK_ColScaled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#RK_ColScaled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.RK_ColScaled" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Randomized Kaczmarz with column scaling (right preconditioning).</p>
+<p>Scales columns of <code class="docutils literal notranslate"><span class="pre">A</span></code> by their standard deviation before running
+Kaczmarz, then maps the solution back.  This is effective when
+columns have very different magnitudes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.RK_ColScaled.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#RK_ColScaled.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.RK_ColScaled.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run column-scaled Kaczmarz.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.RK_Equi">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.rk.</span></span><span class="sig-name descname"><span class="pre">RK_Equi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ruiz_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#RK_Equi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.RK_Equi" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Randomized Kaczmarz with Ruiz equilibration.</p>
+<p>Applies iterative row/column (Ruiz) scaling before Kaczmarz to
+improve the condition number of <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>ruiz_iters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of Ruiz balancing iterations.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.RK_Equi.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#RK_Equi.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.RK_Equi.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run Ruiz-equilibrated Kaczmarz.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.RK_Tikh">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.rk.</span></span><span class="sig-name descname"><span class="pre">RK_Tikh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#RK_Tikh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.RK_Tikh" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Randomized Kaczmarz on the Tikhonov-augmented system.</p>
+<p>Appends <code class="docutils literal notranslate"><span class="pre">sqrtlam</span> <span class="pre">*</span> <span class="pre">I</span></code> rows and zero RHS to the system, turning
+Kaczmarz into an implicit ridge regression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>None</em>) – Explicit regularisation parameter.  If <code class="docutils literal notranslate"><span class="pre">None</span></code>, it is set
+automatically as <code class="docutils literal notranslate"><span class="pre">lam_scale</span> <span class="pre">*</span> <span class="pre">||A||_F^2</span> <span class="pre">/</span> <span class="pre">m</span></code>.</p></li>
+<li><p><strong>lam_scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Scale factor for the automatic <code class="docutils literal notranslate"><span class="pre">lam</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.RK_Tikh.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#RK_Tikh.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.RK_Tikh.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run Tikhonov-augmented Kaczmarz.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.RK_EquiTikh">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.rk.</span></span><span class="sig-name descname"><span class="pre">RK_EquiTikh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ruiz_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#RK_EquiTikh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.RK_EquiTikh" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>RK with both Ruiz equilibration and Tikhonov augmentation.</p>
+<p>Combines the benefits of condition-number improvement (Ruiz) and
+regularisation (Tikhonov).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>ruiz_iters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>None</em>)</p></li>
+<li><p><strong>lam_scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.rk.RK_EquiTikh.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/rk.html#RK_EquiTikh.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.rk.RK_EquiTikh.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run Ruiz-equilibrated, Tikhonov-augmented Kaczmarz.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-online_estimators.estimators.grk">
+<span id="greedy-randomized-kaczmarz-family"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">Greedy Randomized Kaczmarz Family</a><a class="headerlink" href="#module-online_estimators.estimators.grk" title="Link to this heading">#</a></h2>
+<p>Greedy Randomized Kaczmarz (GRK) and its variants.</p>
+<p>GRK improves upon vanilla Randomized Kaczmarz by selecting rows with
+<em>large</em> residual-to-norm ratios, concentrating updates where they reduce
+the error most.  An adaptive threshold <code class="docutils literal notranslate"><span class="pre">eps_k</span></code> is computed each iteration
+to define the “greedy” working set.</p>
+<p>Variants in this module:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#online_estimators.estimators.grk.GRK" title="online_estimators.estimators.grk.GRK"><code class="xref py py-class docutils literal notranslate"><span class="pre">GRK</span></code></a>                –  base greedy RK</p></li>
+<li><p><a class="reference internal" href="#online_estimators.estimators.grk.TAGK" title="online_estimators.estimators.grk.TAGK"><code class="xref py py-class docutils literal notranslate"><span class="pre">TAGK</span></code></a>                –  GRK + Polyak tail-averaging</p></li>
+<li><p><a class="reference internal" href="#online_estimators.estimators.grk.GRK_Tikh" title="online_estimators.estimators.grk.GRK_Tikh"><code class="xref py py-class docutils literal notranslate"><span class="pre">GRK_Tikh</span></code></a>           –  GRK on the Tikhonov-augmented system</p></li>
+<li><p><a class="reference internal" href="#online_estimators.estimators.grk.TAGK_Tikh" title="online_estimators.estimators.grk.TAGK_Tikh"><code class="xref py py-class docutils literal notranslate"><span class="pre">TAGK_Tikh</span></code></a>           –  GRK + Tikhonov + tail-averaging</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.grk.GRK">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.grk.</span></span><span class="sig-name descname"><span class="pre">GRK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/grk.html#GRK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.grk.GRK" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Greedy Randomized Kaczmarz (GRK).</p>
+<p>Selects rows whose per-row residual is large relative to the global
+residual, then samples from this “greedy set” with residual-proportional
+probabilities.</p>
+<p>When the C++ extension <code class="docutils literal notranslate"><span class="pre">online_estimation</span></code> is installed, the iterate
+method delegates to a compiled implementation for better performance.
+The C++ backend does not support the <code class="docutils literal notranslate"><span class="pre">n_iters</span></code>, <code class="docutils literal notranslate"><span class="pre">x0</span></code>, <code class="docutils literal notranslate"><span class="pre">tol</span></code>, or <code class="docutils literal notranslate"><span class="pre">rng</span></code>
+arguments – those calls fall back to pure Python automatically.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>default_tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Default tolerance used by the C++ backend when available.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>Bai, Z. &amp; Wu, W.  “On greedy randomized Kaczmarz method for solving
+large sparse linear systems.”  <em>SIAM J. Sci. Comput.</em>, 40(1), 2018.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">online_estimators.estimators</span><span class="w"> </span><span class="kn">import</span> <span class="n">GRK</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grk</span> <span class="o">=</span> <span class="n">GRK</span><span class="p">(</span><span class="n">num_params</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theta</span> <span class="o">=</span> <span class="n">grk</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.grk.GRK.seed_rng">
+<span class="sig-name descname"><span class="pre">seed_rng</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/grk.html#GRK.seed_rng"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.grk.GRK.seed_rng" title="Link to this definition">#</a></dt>
+<dd><p>Seed the internal random engine for reproducibility.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Seed value.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.grk.GRK.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/grk.html#GRK.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.grk.GRK.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run <code class="docutils literal notranslate"><span class="pre">n_iters</span></code> greedy Kaczmarz iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>n_iters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em>) – Number of iterations.  Defaults to <code class="docutils literal notranslate"><span class="pre">m</span></code>.</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>) – Override starting point for this call.</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Early-stop tolerance on <code class="docutils literal notranslate"><span class="pre">||r||^2</span></code>.</p></li>
+<li><p><strong>rng</strong> (<em>np.random.Generator</em><em> or </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.grk.TAGK">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.grk.</span></span><span class="sig-name descname"><span class="pre">TAGK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burnin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/grk.html#TAGK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.grk.TAGK" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Greedy RK with Polyak tail-averaging.</p>
+<p>Same greedy row selection as <a class="reference internal" href="#online_estimators.estimators.grk.GRK" title="online_estimators.estimators.grk.GRK"><code class="xref py py-class docutils literal notranslate"><span class="pre">GRK</span></code></a>, but returns the average of
+iterates collected <em>after</em> a burn-in phase.</p>
+<p>When the C++ extension <code class="docutils literal notranslate"><span class="pre">online_estimation</span></code> is installed and no
+per-call overrides are requested, the iterate method delegates to the
+C++ <code class="docutils literal notranslate"><span class="pre">TAGK</span></code> implementation for better performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>burnin</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Iterations to skip before starting the running average.</p></li>
+<li><p><strong>default_tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Default tolerance used by the C++ backend when available.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.grk.TAGK.seed_rng">
+<span class="sig-name descname"><span class="pre">seed_rng</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/grk.html#TAGK.seed_rng"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.grk.TAGK.seed_rng" title="Link to this definition">#</a></dt>
+<dd><p>Seed the internal random engine for reproducibility.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Seed value.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.grk.TAGK.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/grk.html#TAGK.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.grk.TAGK.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run greedy Kaczmarz with tail-averaging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>n_iters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>rng</strong> (<em>np.random.Generator</em><em> or </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tail-averaged iterate.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.grk.GRK_Tikh">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.grk.</span></span><span class="sig-name descname"><span class="pre">GRK_Tikh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/grk.html#GRK_Tikh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.grk.GRK_Tikh" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Greedy RK on the Tikhonov-augmented system.</p>
+<p>Appends <code class="docutils literal notranslate"><span class="pre">sqrtlam</span> <span class="pre">*</span> <span class="pre">I</span></code> rows to <code class="docutils literal notranslate"><span class="pre">A</span></code> for implicit regularisation,
+then applies greedy row selection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>None</em>)</p></li>
+<li><p><strong>lam_scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.grk.GRK_Tikh.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/grk.html#GRK_Tikh.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.grk.GRK_Tikh.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run Tikhonov-augmented greedy Kaczmarz.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>n_iters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>rng</strong> (<em>np.random.Generator</em><em> or </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.grk.TAGK_Tikh">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.grk.</span></span><span class="sig-name descname"><span class="pre">TAGK_Tikh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/grk.html#TAGK_Tikh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.grk.TAGK_Tikh" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Greedy RK + Tikhonov augmentation + tail-averaging.</p>
+<p>This is the <strong>TAG-K</strong> algorithm: combines greedy row selection,
+Tikhonov regularisation, and Polyak tail-averaging for robust
+online parameter estimation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>None</em>)</p></li>
+<li><p><strong>lam_scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.grk.TAGK_Tikh.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burnin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/grk.html#TAGK_Tikh.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.grk.TAGK_Tikh.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run TAG-K: greedy Kaczmarz + Tikhonov + tail-averaging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>n_iters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+<li><p><strong>rng</strong> (<em>np.random.Generator</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>burnin</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tail-averaged iterate.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-online_estimators.estimators.block">
+<span id="block-methods"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">Block Methods</a><a class="headerlink" href="#module-online_estimators.estimators.block" title="Link to this heading">#</a></h2>
+<p>Block and specialised Kaczmarz variants.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#online_estimators.estimators.block.FDBK" title="online_estimators.estimators.block.FDBK"><code class="xref py py-class docutils literal notranslate"><span class="pre">FDBK</span></code></a>  –  Fast Deterministic Block Kaczmarz</p></li>
+<li><p><a class="reference internal" href="#online_estimators.estimators.block.IGRK" title="online_estimators.estimators.block.IGRK"><code class="xref py py-class docutils literal notranslate"><span class="pre">IGRK</span></code></a>  –  Improved Greedy Randomized Kaczmarz</p></li>
+<li><p><a class="reference internal" href="#online_estimators.estimators.block.MGRK" title="online_estimators.estimators.block.MGRK"><code class="xref py py-class docutils literal notranslate"><span class="pre">MGRK</span></code></a>  –  Momentum-accelerated Greedy RK</p></li>
+<li><p><a class="reference internal" href="#online_estimators.estimators.block.REK" title="online_estimators.estimators.block.REK"><code class="xref py py-class docutils literal notranslate"><span class="pre">REK</span></code></a>   –  Randomized Extended Kaczmarz (handles inconsistent systems)</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.block.FDBK">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.block.</span></span><span class="sig-name descname"><span class="pre">FDBK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/block.html#FDBK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.block.FDBK" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Fast Deterministic Block Kaczmarz (FDBK).</p>
+<p>At each iteration, constructs a <em>block</em> of greedy rows (those with
+large per-row residuals) and performs a single combined projection.
+This can converge faster than single-row methods on well-structured
+systems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>Necoara, I.  “Faster randomized block Kaczmarz algorithms.”
+<em>SIAM J. Matrix Anal. Appl.</em>, 40(4), 2019.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.block.FDBK.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps_row</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/block.html#FDBK.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.block.FDBK.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run one pass of Fast Deterministic Block Kaczmarz.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Convergence tolerance on <code class="docutils literal notranslate"><span class="pre">||r||^2</span></code>.</p></li>
+<li><p><strong>eps_row</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Numerical floor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.block.IGRK">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.block.</span></span><span class="sig-name descname"><span class="pre">IGRK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/block.html#IGRK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.block.IGRK" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Improved Greedy Randomized Kaczmarz.</p>
+<p>Uses a stricter greedy threshold (based on crit-max + Frobenius
+contribution) and runs <code class="docutils literal notranslate"><span class="pre">m*n</span></code> inner iterations per call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.block.IGRK.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/block.html#IGRK.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.block.IGRK.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run <code class="docutils literal notranslate"><span class="pre">m*n</span></code> IGRK sweeps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.block.MGRK">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.block.</span></span><span class="sig-name descname"><span class="pre">MGRK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/block.html#MGRK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.block.MGRK" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Momentum-accelerated Greedy Randomized Kaczmarz.</p>
+<p>Adds a heavy-ball momentum term <code class="docutils literal notranslate"><span class="pre">beta(x_k</span> <span class="pre">-</span> <span class="pre">x_{k-1})</span></code> to the
+standard Kaczmarz update for faster convergence on ill-conditioned
+systems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Step size multiplier (default 1.0).</p></li>
+<li><p><strong>beta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Momentum coefficient (default 0.25).</p></li>
+<li><p><strong>theta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Threshold blending parameter (default 0.5).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.block.MGRK.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/block.html#MGRK.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.block.MGRK.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run <code class="docutils literal notranslate"><span class="pre">m*n</span></code> momentum-accelerated greedy iterations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.estimators.block.REK">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.estimators.block.</span></span><span class="sig-name descname"><span class="pre">REK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/block.html#REK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.block.REK" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#online_estimators.estimators.base.BaseEstimator" title="online_estimators.estimators.base.BaseEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a></p>
+<p>Randomized Extended Kaczmarz.</p>
+<p>Simultaneously projects onto both row and column spaces of <code class="docutils literal notranslate"><span class="pre">A</span></code>,
+allowing convergence even for <em>inconsistent</em> systems (where
+<code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">range(A)</span></code>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>)</p></li>
+<li><p><strong>x0</strong> (<em>np.ndarray</em><em> or </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>Zouzias, A. &amp; Freris, N.  “Randomized extended Kaczmarz for solving
+least squares.”  <em>SIAM J. Matrix Anal. Appl.</em>, 34(2), 2013.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.estimators.block.REK.iterate">
+<span class="sig-name descname"><span class="pre">iterate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_passes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/estimators/block.html#REK.iterate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.estimators.block.REK.iterate" title="Link to this definition">#</a></dt>
+<dd><p>Run REK until convergence or <code class="docutils literal notranslate"><span class="pre">max_passes</span></code> epochs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n)</span></code>)</p></li>
+<li><p><strong>b</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(m,)</span></code>)</p></li>
+<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Convergence tolerance (primal + dual).</p></li>
+<li><p><strong>max_passes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Maximum number of passes over the rows.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-online_estimators.estimators._backend">
+<span id="c-backend-loader"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">C++ Backend Loader</a><a class="headerlink" href="#module-online_estimators.estimators._backend" title="Link to this heading">#</a></h2>
+<p>Optional C++ backend for estimators.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">online_estimation</span></code> C++ extension is installed, estimator classes
+will delegate to compiled implementations for better performance.  The
+extension is built from the <code class="docutils literal notranslate"><span class="pre">cpp/</span></code> directory via <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">./cpp</span></code>.</p>
+<p>When the extension is not available, all estimators fall back to their
+pure-Python implementations transparently.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">online_estimators</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dynamics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Dynamics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-online_estimators.estimators.base">Base Class</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.base.BaseEstimator"><code class="docutils literal notranslate"><span class="pre">BaseEstimator</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.base.BaseEstimator.iterate"><code class="docutils literal notranslate"><span class="pre">BaseEstimator.iterate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-online_estimators.estimators.rls">Recursive Least Squares</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rls.RLS"><code class="docutils literal notranslate"><span class="pre">RLS</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rls.RLS.iterate"><code class="docutils literal notranslate"><span class="pre">RLS.iterate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-online_estimators.estimators.kf">Kalman Filter</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.kf.KF"><code class="docutils literal notranslate"><span class="pre">KF</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.kf.KF.iterate"><code class="docutils literal notranslate"><span class="pre">KF.iterate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-online_estimators.estimators.rk">Randomized Kaczmarz Family</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.ruiz_equilibrate"><code class="docutils literal notranslate"><span class="pre">ruiz_equilibrate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.RK"><code class="docutils literal notranslate"><span class="pre">RK</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.RK.seed_rng"><code class="docutils literal notranslate"><span class="pre">RK.seed_rng()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.RK.iterate"><code class="docutils literal notranslate"><span class="pre">RK.iterate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.TARK"><code class="docutils literal notranslate"><span class="pre">TARK</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.TARK.seed_rng"><code class="docutils literal notranslate"><span class="pre">TARK.seed_rng()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.TARK.iterate"><code class="docutils literal notranslate"><span class="pre">TARK.iterate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.RK_ColScaled"><code class="docutils literal notranslate"><span class="pre">RK_ColScaled</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.RK_ColScaled.iterate"><code class="docutils literal notranslate"><span class="pre">RK_ColScaled.iterate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.RK_Equi"><code class="docutils literal notranslate"><span class="pre">RK_Equi</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.RK_Equi.iterate"><code class="docutils literal notranslate"><span class="pre">RK_Equi.iterate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.RK_Tikh"><code class="docutils literal notranslate"><span class="pre">RK_Tikh</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.RK_Tikh.iterate"><code class="docutils literal notranslate"><span class="pre">RK_Tikh.iterate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.RK_EquiTikh"><code class="docutils literal notranslate"><span class="pre">RK_EquiTikh</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.rk.RK_EquiTikh.iterate"><code class="docutils literal notranslate"><span class="pre">RK_EquiTikh.iterate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-online_estimators.estimators.grk">Greedy Randomized Kaczmarz Family</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.grk.GRK"><code class="docutils literal notranslate"><span class="pre">GRK</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.grk.GRK.seed_rng"><code class="docutils literal notranslate"><span class="pre">GRK.seed_rng()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.grk.GRK.iterate"><code class="docutils literal notranslate"><span class="pre">GRK.iterate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.grk.TAGK"><code class="docutils literal notranslate"><span class="pre">TAGK</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.grk.TAGK.seed_rng"><code class="docutils literal notranslate"><span class="pre">TAGK.seed_rng()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.grk.TAGK.iterate"><code class="docutils literal notranslate"><span class="pre">TAGK.iterate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.grk.GRK_Tikh"><code class="docutils literal notranslate"><span class="pre">GRK_Tikh</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.grk.GRK_Tikh.iterate"><code class="docutils literal notranslate"><span class="pre">GRK_Tikh.iterate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.grk.TAGK_Tikh"><code class="docutils literal notranslate"><span class="pre">TAGK_Tikh</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.grk.TAGK_Tikh.iterate"><code class="docutils literal notranslate"><span class="pre">TAGK_Tikh.iterate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-online_estimators.estimators.block">Block Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.block.FDBK"><code class="docutils literal notranslate"><span class="pre">FDBK</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.block.FDBK.iterate"><code class="docutils literal notranslate"><span class="pre">FDBK.iterate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.block.IGRK"><code class="docutils literal notranslate"><span class="pre">IGRK</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.block.IGRK.iterate"><code class="docutils literal notranslate"><span class="pre">IGRK.iterate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.block.MGRK"><code class="docutils literal notranslate"><span class="pre">MGRK</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.block.MGRK.iterate"><code class="docutils literal notranslate"><span class="pre">MGRK.iterate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.block.REK"><code class="docutils literal notranslate"><span class="pre">REK</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.estimators.block.REK.iterate"><code class="docutils literal notranslate"><span class="pre">REK.iterate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-online_estimators.estimators._backend">C++ Backend Loader</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, A2R Lab.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

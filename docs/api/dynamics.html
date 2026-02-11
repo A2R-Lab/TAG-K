@@ -1,0 +1,1216 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Dynamics &#8212; online_estimators</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9f60eef9" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/dynamics';</script>
+    <link rel="canonical" href="http://a2r-lab.org/TAG-K/docs/api/dynamics.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Control" href="control.html" />
+    <link rel="prev" title="Estimators" href="estimators.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">online_estimators</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="estimators.html">
+    Estimators
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Dynamics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="control.html">
+    Control
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="noise.html">
+    Noise Models
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="trajectories.html">
+    Trajectories
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="simulation.html">
+    Simulation
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="visualization.html">
+    Visualization
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="data.html">
+    Data Processing
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="http://a2r-lab.org/TAG-K">
+    Project Page
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/A2R-Lab/TAG-K">
+    GitHub
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/A2R-Lab/TAG-K" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="estimators.html">
+    Estimators
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Dynamics
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="control.html">
+    Control
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="noise.html">
+    Noise Models
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="trajectories.html">
+    Trajectories
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="simulation.html">
+    Simulation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="visualization.html">
+    Visualization
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="data.html">
+    Data Processing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="http://a2r-lab.org/TAG-K">
+    Project Page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/A2R-Lab/TAG-K">
+    GitHub
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/A2R-Lab/TAG-K" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Dynamics</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="dynamics">
+<h1>Dynamics<a class="headerlink" href="#dynamics" title="Link to this heading">#</a></h1>
+<p>Dynamical system models for parameter estimation benchmarks.</p>
+<section id="module-online_estimators.dynamics.quadrotor">
+<span id="quadrotor"></span><h2>Quadrotor<a class="headerlink" href="#module-online_estimators.dynamics.quadrotor" title="Link to this heading">#</a></h2>
+<p>Full 6-DOF quadrotor dynamics with inertial parameter management.</p>
+<p>This module implements a rigid-body quadrotor model with:</p>
+<ul class="simple">
+<li><p>Separate <em>ground-truth</em> and <em>estimated</em> inertial parameters
+(mass, center of mass, full 3x3 inertia tensor).</p></li>
+<li><p>Newton-Euler data matrix/force vector for parameter estimation
+(<code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">theta</span> <span class="pre">=</span> <span class="pre">b</span></code>).</p></li>
+<li><p>Payload attach/detach via parallel-axis theorem.</p></li>
+<li><p>Aerodynamic added-inertia and parameter drift utilities.</p></li>
+<li><p>RK4 integration and autograd-based linearisation.</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.dynamics.quadrotor.</span></span><span class="sig-name descname"><span class="pre">QuadrotorDynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_off</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Rigid-body quadrotor with separate true/estimated inertial parameters.</p>
+<p>The model uses a quaternion attitude representation
+<code class="docutils literal notranslate"><span class="pre">q</span> <span class="pre">=</span> <span class="pre">[q_w,</span> <span class="pre">q_x,</span> <span class="pre">q_y,</span> <span class="pre">q_z]</span></code> and a 13-dimensional state vector:</p>
+<p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">[r(3),</span> <span class="pre">q(4),</span> <span class="pre">v(3),</span> <span class="pre">omega(3)]</span></code></p>
+<p>where <code class="docutils literal notranslate"><span class="pre">r</span></code> is the world-frame position, <code class="docutils literal notranslate"><span class="pre">q</span></code> the body-&gt;world
+quaternion, <code class="docutils literal notranslate"><span class="pre">v</span></code> the world-frame linear velocity, and <code class="docutils literal notranslate"><span class="pre">omega</span></code> the
+body-frame angular velocity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>r_off</strong> (<em>array-like</em><em> or </em><em>None</em>) – Initial body-frame COM offset (3-vector).  Defaults to zero.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.nx">
+<span class="sig-name descname"><span class="pre">nx</span></span><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.nx" title="Link to this definition">#</a></dt>
+<dd><p>State dimension (12 after quaternion reduction).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.nu">
+<span class="sig-name descname"><span class="pre">nu</span></span><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.nu" title="Link to this definition">#</a></dt>
+<dd><p>Control dimension (4 motors).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.dt">
+<span class="sig-name descname"><span class="pre">dt</span></span><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dt" title="Link to this definition">#</a></dt>
+<dd><p>Default integration time-step (1/freq).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.freq">
+<span class="sig-name descname"><span class="pre">freq</span></span><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.freq" title="Link to this definition">#</a></dt>
+<dd><p>Control frequency in Hz.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.T">
+<span class="sig-name descname"><span class="pre">T</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[</span> <span class="pre">1.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">0.,</span> <span class="pre">-1.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">0.,</span>&#160; <span class="pre">0.,</span> <span class="pre">-1.,</span>&#160; <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">0.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">0.,</span> <span class="pre">-1.]])</span></span><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.T" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.H">
+<span class="sig-name descname"><span class="pre">H</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[1.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">1.,</span> <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">1.]])</span></span><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.H" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.set_true_inertial_params">
+<span class="sig-name descname"><span class="pre">set_true_inertial_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.set_true_inertial_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.set_true_inertial_params" title="Link to this definition">#</a></dt>
+<dd><p>Set ground-truth inertial parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>theta</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(10,)</span></code>) – <code class="docutils literal notranslate"><span class="pre">[m,</span> <span class="pre">m*cx,</span> <span class="pre">m*cy,</span> <span class="pre">m*cz,</span> <span class="pre">Ixx,</span> <span class="pre">Iyy,</span> <span class="pre">Izz,</span> <span class="pre">Ixy,</span> <span class="pre">Ixz,</span> <span class="pre">Iyz]</span></code></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_true_inertial_params">
+<span class="sig-name descname"><span class="pre">get_true_inertial_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.get_true_inertial_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_true_inertial_params" title="Link to this definition">#</a></dt>
+<dd><p>Return the 10-vector of ground-truth inertial parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">[m,</span> <span class="pre">m*cx,</span> <span class="pre">m*cy,</span> <span class="pre">m*cz,</span> <span class="pre">Ixx,</span> <span class="pre">Iyy,</span> <span class="pre">Izz,</span> <span class="pre">Ixy,</span> <span class="pre">Ixz,</span> <span class="pre">Iyz]</span></code></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(10,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.set_estimated_inertial_params">
+<span class="sig-name descname"><span class="pre">set_estimated_inertial_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.set_estimated_inertial_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.set_estimated_inertial_params" title="Link to this definition">#</a></dt>
+<dd><p>Update the controller’s believed inertial parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>theta</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(10,)</span></code>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_estimated_inertial_params">
+<span class="sig-name descname"><span class="pre">get_estimated_inertial_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.get_estimated_inertial_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_estimated_inertial_params" title="Link to this definition">#</a></dt>
+<dd><p>Return the 10-vector of estimated inertial parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(10,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_hover_thrust_est">
+<span class="sig-name descname"><span class="pre">get_hover_thrust_est</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.get_hover_thrust_est"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_hover_thrust_est" title="Link to this definition">#</a></dt>
+<dd><p>Per-motor hover thrust from <em>estimated</em> mass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_hover_thrust_true">
+<span class="sig-name descname"><span class="pre">get_hover_thrust_true</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.get_hover_thrust_true"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_hover_thrust_true" title="Link to this definition">#</a></dt>
+<dd><p>Per-motor hover thrust from <em>true</em> mass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_true">
+<span class="sig-name descname"><span class="pre">dynamics_true</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_vec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.dynamics_true"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_true" title="Link to this definition">#</a></dt>
+<dd><p>Continuous-time dynamics using <em>ground-truth</em> parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+<li><p><strong>u</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_rk4_true">
+<span class="sig-name descname"><span class="pre">dynamics_rk4_true</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_vec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.dynamics_rk4_true"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_rk4_true" title="Link to this definition">#</a></dt>
+<dd><p>RK4 step using <em>ground-truth</em> parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+<li><p><strong>u</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_est">
+<span class="sig-name descname"><span class="pre">dynamics_est</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_vec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.dynamics_est"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_est" title="Link to this definition">#</a></dt>
+<dd><p>Continuous-time dynamics using <em>estimated</em> parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+<li><p><strong>u</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_rk4_est">
+<span class="sig-name descname"><span class="pre">dynamics_rk4_est</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_vec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.dynamics_rk4_est"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_rk4_est" title="Link to this definition">#</a></dt>
+<dd><p>RK4 step using <em>estimated</em> parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+<li><p><strong>u</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_linearized_true">
+<span class="sig-name descname"><span class="pre">get_linearized_true</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ref</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.get_linearized_true"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_linearized_true" title="Link to this definition">#</a></dt>
+<dd><p>Linearise true dynamics about <code class="docutils literal notranslate"><span class="pre">(x_ref,</span> <span class="pre">u_ref)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(12,</span> <span class="pre">12)</span></code>)</p></li>
+<li><p><strong>B</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(12,</span> <span class="pre">4)</span></code>)</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x_ref</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+<li><p><strong>u_ref</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_linearized_est">
+<span class="sig-name descname"><span class="pre">get_linearized_est</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ref</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.get_linearized_est"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_linearized_est" title="Link to this definition">#</a></dt>
+<dd><p>Linearise estimated dynamics about <code class="docutils literal notranslate"><span class="pre">(x_ref,</span> <span class="pre">u_ref)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(12,</span> <span class="pre">12)</span></code>)</p></li>
+<li><p><strong>B</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(12,</span> <span class="pre">4)</span></code>)</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x_ref</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+<li><p><strong>u_ref</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_data_matrix">
+<span class="sig-name descname"><span class="pre">get_data_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.get_data_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_data_matrix" title="Link to this definition">#</a></dt>
+<dd><p>Build the 6x10 Newton-Euler data matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+<p>Constructs the matrix such that <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">theta</span> <span class="pre">=</span> <span class="pre">w</span></code> where
+<code class="docutils literal notranslate"><span class="pre">theta</span> <span class="pre">=</span> <span class="pre">[m,</span> <span class="pre">mcx,</span> <span class="pre">mcy,</span> <span class="pre">mcz,</span> <span class="pre">Ixx,</span> <span class="pre">Iyy,</span> <span class="pre">Izz,</span> <span class="pre">Ixy,</span> <span class="pre">Ixz,</span> <span class="pre">Iyz]</span></code>.</p>
+<p>Forces and torques are expressed in the <strong>body frame</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(13,)</span></code>) – State <code class="docutils literal notranslate"><span class="pre">[r,</span> <span class="pre">q,</span> <span class="pre">v,</span> <span class="pre">omega]</span></code>.</p></li>
+<li><p><strong>dx</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(13,)</span></code>) – State derivative <code class="docutils literal notranslate"><span class="pre">[rdot,</span> <span class="pre">q_dot,</span> <span class="pre">v_dot_world,</span> <span class="pre">alpha_body]</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(6,</span> <span class="pre">10)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_force_vector">
+<span class="sig-name descname"><span class="pre">get_force_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_curr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_curr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.get_force_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_force_vector" title="Link to this definition">#</a></dt>
+<dd><p>Build the 6x1 wrench vector <code class="docutils literal notranslate"><span class="pre">b</span></code> (body frame).</p>
+<p>The wrench is purely gravito-inertial (excludes motor forces),
+matching <a class="reference internal" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_data_matrix" title="online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_data_matrix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_data_matrix()</span></code></a> so that <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">theta</span> <span class="pre">=</span> <span class="pre">b</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_curr</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(13,)</span></code>)</p></li>
+<li><p><strong>dx</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(13,)</span></code>)</p></li>
+<li><p><strong>u_curr</strong> (<em>np.ndarray</em><em> or </em><em>None</em>) – Unused; kept for API compatibility.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(6,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.attach_payload">
+<span class="sig-name descname"><span class="pre">attach_payload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m_p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_r_p</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.attach_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.attach_payload" title="Link to this definition">#</a></dt>
+<dd><p>Attach a point-mass payload via the parallel-axis theorem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Payload mass.</p></li>
+<li><p><strong>delta_r_p</strong> (array-like, shape <code class="docutils literal notranslate"><span class="pre">(3,)</span></code>) – Body-frame position of the payload relative to the vehicle origin.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.detach_payload">
+<span class="sig-name descname"><span class="pre">detach_payload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.detach_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.detach_payload" title="Link to this definition">#</a></dt>
+<dd><p>Detach (drop) the most recently attached payload.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.14)"><strong>RuntimeError</strong></a> – If no payloads are attached.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If removing the payload would yield non-positive mass.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.closest_spd">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">closest_spd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.closest_spd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.closest_spd" title="Link to this definition">#</a></dt>
+<dd><p>Project the inertia sub-matrix of <code class="docutils literal notranslate"><span class="pre">theta</span></code> to the nearest SPD matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>theta</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(10,)</span></code>)</p></li>
+<li><p><strong>epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Eigenvalue floor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(10,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.aero_added_inertia">
+<span class="sig-name descname"><span class="pre">aero_added_inertia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wind_vec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.aero_added_inertia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.aero_added_inertia" title="Link to this definition">#</a></dt>
+<dd><p>Apply aerodynamic added-inertia perturbation from a wind vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wind_vec</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(3,)</span></code>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.add_drift">
+<span class="sig-name descname"><span class="pre">add_drift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass_std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inertia_std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">com_std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.add_drift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.add_drift" title="Link to this definition">#</a></dt>
+<dd><p>Add Gaussian drift to true inertial parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mass_std</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Standard deviation for mass drift.</p></li>
+<li><p><strong>inertia_std</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Standard deviation for inertia-tensor element drift.</p></li>
+<li><p><strong>com_std</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Standard deviation for center-of-mass drift.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.hat">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">hat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.hat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.hat" title="Link to this definition">#</a></dt>
+<dd><p>Skew-symmetric matrix from 3-vector: <code class="docutils literal notranslate"><span class="pre">hat(u)</span> <span class="pre">v</span> <span class="pre">==</span> <span class="pre">u</span> <span class="pre">x</span> <span class="pre">v</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(3,)</span></code>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">3)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.L">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">L</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.L"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.L" title="Link to this definition">#</a></dt>
+<dd><p>Left-quaternion multiplication matrix: <code class="docutils literal notranslate"><span class="pre">L(q)</span> <span class="pre">p</span> <span class="pre">==</span> <span class="pre">q</span> <span class="pre">(x)</span> <span class="pre">p</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,)</span></code>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,</span> <span class="pre">4)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.qtoQ">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">qtoQ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.qtoQ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.qtoQ" title="Link to this definition">#</a></dt>
+<dd><p>Quaternion to 3x3 rotation matrix (body -&gt; world).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,)</span></code>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">3)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.G">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">G</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.G"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.G" title="Link to this definition">#</a></dt>
+<dd><p>Quaternion kinematic Jacobian <code class="docutils literal notranslate"><span class="pre">G(q)</span> <span class="pre">=</span> <span class="pre">L(q)</span> <span class="pre">H</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,)</span></code>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,</span> <span class="pre">3)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.rptoq">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">rptoq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.rptoq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.rptoq" title="Link to this definition">#</a></dt>
+<dd><p>Rodrigues parameters (3-vector) -&gt; unit quaternion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>phi</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(3,)</span></code>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.qtorp">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">qtorp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.qtorp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.qtorp" title="Link to this definition">#</a></dt>
+<dd><p>Unit quaternion -&gt; Rodrigues parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,)</span></code>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(3,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.quadrotor.QuadrotorDynamics.E">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">E</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/quadrotor.html#QuadrotorDynamics.E"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.E" title="Link to this definition">#</a></dt>
+<dd><p>Block-diagonal embedding for reduced-state linearisation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,)</span></code>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(13,</span> <span class="pre">12)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-online_estimators.dynamics.double_pendulum">
+<span id="double-pendulum"></span><h2>Double Pendulum<a class="headerlink" href="#module-online_estimators.dynamics.double_pendulum" title="Link to this heading">#</a></h2>
+<p>Double pendulum dynamics with RK4 integration.</p>
+<p>Implements the equations of motion for a planar double pendulum with
+autograd-based Jacobian computation for linearisation.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="online_estimators.dynamics.double_pendulum.DoublePendulum">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">online_estimators.dynamics.double_pendulum.</span></span><span class="sig-name descname"><span class="pre">DoublePendulum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9.81</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/double_pendulum.html#DoublePendulum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.double_pendulum.DoublePendulum" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Planar double pendulum with autograd-based linearisation.</p>
+<p>State vector: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">[theta_1,</span> <span class="pre">omega_1,</span> <span class="pre">theta_2,</span> <span class="pre">omega_2]</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>g</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Gravitational acceleration (m/s^2).</p></li>
+<li><p><strong>m1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Link masses (kg).</p></li>
+<li><p><strong>m2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Link masses (kg).</p></li>
+<li><p><strong>l1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Link lengths (m).</p></li>
+<li><p><strong>l2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Link lengths (m).</p></li>
+<li><p><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Integration time-step (s).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">online_estimators.dynamics</span><span class="w"> </span><span class="kn">import</span> <span class="n">DoublePendulum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dp</span> <span class="o">=</span> <span class="n">DoublePendulum</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.double_pendulum.DoublePendulum.continuous_dynamics">
+<span class="sig-name descname"><span class="pre">continuous_dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/double_pendulum.html#DoublePendulum.continuous_dynamics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.double_pendulum.DoublePendulum.continuous_dynamics" title="Link to this definition">#</a></dt>
+<dd><p>Continuous-time equations of motion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,)</span></code>) – <code class="docutils literal notranslate"><span class="pre">[theta_1,</span> <span class="pre">omega_1,</span> <span class="pre">theta_2,</span> <span class="pre">omega_2]</span></code></p></li>
+<li><p><strong>m1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Physical parameters.</p></li>
+<li><p><strong>m2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Physical parameters.</p></li>
+<li><p><strong>l1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Physical parameters.</p></li>
+<li><p><strong>l2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Physical parameters.</p></li>
+<li><p><strong>g</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Physical parameters.</p></li>
+<li><p><strong>u</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(1,)</span></code>) – Torque applied to the second link.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">[omega_1,</span> <span class="pre">alpha_1,</span> <span class="pre">omega_2,</span> <span class="pre">alpha_2]</span></code></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.double_pendulum.DoublePendulum.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/double_pendulum.html#DoublePendulum.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.double_pendulum.DoublePendulum.step" title="Link to this definition">#</a></dt>
+<dd><p>Advance the state by one time-step using RK4.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,)</span></code>)</p></li>
+<li><p><strong>u</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(1,)</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,)</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="online_estimators.dynamics.double_pendulum.DoublePendulum.linearize">
+<span class="sig-name descname"><span class="pre">linearize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ref</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/online_estimators/dynamics/double_pendulum.html#DoublePendulum.linearize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#online_estimators.dynamics.double_pendulum.DoublePendulum.linearize" title="Link to this definition">#</a></dt>
+<dd><p>Linearise the discrete dynamics about <code class="docutils literal notranslate"><span class="pre">(x_ref,</span> <span class="pre">u_ref)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>A</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,</span> <span class="pre">4)</span></code>)</p></li>
+<li><p><strong>B</strong> (np.ndarray, shape <code class="docutils literal notranslate"><span class="pre">(4,</span> <span class="pre">1)</span></code>)</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>x_ref</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+<li><p><strong>u_ref</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>ndarray</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="estimators.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Estimators</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="control.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Control</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-online_estimators.dynamics.quadrotor">Quadrotor</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.nx"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.nx</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.nu"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.nu</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dt"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.dt</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.freq"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.freq</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.T"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.T</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.H"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.H</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.set_true_inertial_params"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.set_true_inertial_params()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_true_inertial_params"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.get_true_inertial_params()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.set_estimated_inertial_params"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.set_estimated_inertial_params()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_estimated_inertial_params"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.get_estimated_inertial_params()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_hover_thrust_est"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.get_hover_thrust_est()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_hover_thrust_true"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.get_hover_thrust_true()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_true"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.dynamics_true()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_rk4_true"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.dynamics_rk4_true()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_est"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.dynamics_est()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.dynamics_rk4_est"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.dynamics_rk4_est()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_linearized_true"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.get_linearized_true()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_linearized_est"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.get_linearized_est()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_data_matrix"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.get_data_matrix()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.get_force_vector"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.get_force_vector()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.attach_payload"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.attach_payload()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.detach_payload"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.detach_payload()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.closest_spd"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.closest_spd()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.aero_added_inertia"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.aero_added_inertia()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.add_drift"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.add_drift()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.hat"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.hat()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.L"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.L()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.qtoQ"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.qtoQ()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.G"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.G()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.rptoq"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.rptoq()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.qtorp"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.qtorp()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.quadrotor.QuadrotorDynamics.E"><code class="docutils literal notranslate"><span class="pre">QuadrotorDynamics.E()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-online_estimators.dynamics.double_pendulum">Double Pendulum</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.double_pendulum.DoublePendulum"><code class="docutils literal notranslate"><span class="pre">DoublePendulum</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.double_pendulum.DoublePendulum.continuous_dynamics"><code class="docutils literal notranslate"><span class="pre">DoublePendulum.continuous_dynamics()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.double_pendulum.DoublePendulum.step"><code class="docutils literal notranslate"><span class="pre">DoublePendulum.step()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#online_estimators.dynamics.double_pendulum.DoublePendulum.linearize"><code class="docutils literal notranslate"><span class="pre">DoublePendulum.linearize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, A2R Lab.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

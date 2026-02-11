@@ -1,0 +1,12 @@
+/* Custom CSS overrides for online_estimators docs */
+.wy-side-nav-search {
+    background-color: #2563eb;
+}
+
+.wy-side-nav-search a {
+    color: #fff;
+}
+
+.wy-nav-top {
+    background-color: #1d4ed8;
+}

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="TAG-K: Tail-Averaged Greedy Kaczmarz for Online Inertial Parameter Estimation">
+  <meta name="description" content="TAG-K is a computationally efficient and performant online inertial parameter estimation algorithm, achieving 1.5x-1.9x faster execution and 25% lower estimation error than baselines.">
+  <meta name="keywords" content="TAG-K, Kaczmarz, online estimation, inertial parameters, robotics, quadrotor, ICRA 2026">
+  <meta name="author" content="Shuo Sha, Anupam Bhakta, Zhenyuan Jiang, Kevin Qiu, Ishaan Mahajan, Gabriel Bravo-Palacios, Brian Plancher">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="A2R Lab">
+  <meta property="og:title" content="TAG-K: Tail-Averaged Greedy Kaczmarz for Online Inertial Parameter Estimation">
+  <meta property="og:description" content="TAG-K is a computationally efficient and performant online inertial parameter estimation algorithm, achieving 1.5x-1.9x faster execution and 25% lower estimation error than baselines.">
+  <meta property="og:url" content="http://a2r-lab.org/TAG-K">
+  <meta property="article:published_time" content="2025-01-01T00:00:00.000Z">
+  <meta property="article:author" content="Shuo Sha">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="Robotics">
+  <meta property="article:tag" content="Parameter Estimation">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TAG-K: Tail-Averaged Greedy Kaczmarz for Online Inertial Parameter Estimation">
+  <meta name="twitter:description" content="TAG-K is a computationally efficient and performant online inertial parameter estimation algorithm, achieving 1.5x-1.9x faster execution and 25% lower estimation error than baselines.">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="TAG-K: Tail-Averaged Greedy Kaczmarz for Computationally Efficient and Performant Online Inertial Parameter Estimation">
+  <meta name="citation_author" content="Sha, Shuo">
+  <meta name="citation_author" content="Bhakta, Anupam">
+  <meta name="citation_author" content="Jiang, Zhenyuan">
+  <meta name="citation_author" content="Qiu, Kevin">
+  <meta name="citation_author" content="Mahajan, Ishaan">
+  <meta name="citation_author" content="Bravo-Palacios, Gabriel">
+  <meta name="citation_author" content="Plancher, Brian">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="IEEE International Conference on Robotics and Automation (ICRA)">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>TAG-K &mdash; Tail-Averaged Greedy Kaczmarz | ICRA 2026</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+
+  <!-- Critical CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+  <link rel="stylesheet" href="static/css/index.css">>
+
+  <!-- Non-critical CSS -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- JS -->
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "TAG-K: Tail-Averaged Greedy Kaczmarz for Computationally Efficient and Performant Online Inertial Parameter Estimation",
+    "description": "TAG-K achieves 1.5x-1.9x faster execution on laptop CPUs, 4.8x-20.7x faster on embedded processors, and 25% lower estimation error than classical baselines.",
+    "author": [
+      {"@type": "Person", "name": "Shuo Sha", "url": "https://www.linkedin.com/in/shuo-sha-b07527293", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
+      {"@type": "Person", "name": "Anupam Bhakta", "url": "https://www.linkedin.com/in/anupam-bhakta", "affiliation": {"@type": "Organization", "name": "Columbia College, Columbia University"}},
+      {"@type": "Person", "name": "Zhenyuan Jiang", "url": "https://www.linkedin.com/in/zhenyuan-jiang-84832523a/", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
+      {"@type": "Person", "name": "Kevin Qiu", "url": "https://www.linkedin.com/in/kevinzqiu", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
+      {"@type": "Person", "name": "Ishaan Mahajan", "url": "https://www.linkedin.com/in/ishaan-mahajan15", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
+      {"@type": "Person", "name": "Gabriel Bravo-Palacios", "url": "https://linkedin.com/in/gabriel-bravo-palacios", "affiliation": [{"@type": "Organization", "name": "Barnard College, Columbia University"}, {"@type": "Organization", "name": "Dartmouth College"}]},
+      {"@type": "Person", "name": "Brian Plancher", "url": "https://brianplancher.com/", "affiliation": [{"@type": "Organization", "name": "Barnard College, Columbia University"}, {"@type": "Organization", "name": "Dartmouth College"}]}
+    ],
+    "datePublished": "2026-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "IEEE International Conference on Robotics and Automation (ICRA)"
+    },
+    "url": "http://a2r-lab.org/TAG-K",
+    "keywords": ["Kaczmarz algorithm", "online estimation", "inertial parameters", "robotics", "quadrotor", "parameter estimation"],
+    "isAccessibleForFree": true,
+    "about": [
+      {"@type": "Thing", "name": "Online Parameter Estimation"},
+      {"@type": "Thing", "name": "Robotics"}
+    ]
+  }
+  </script>
+
+  <!-- Organization Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "A2R Lab",
+    "url": "https://a2r-lab.org",
+    "sameAs": [
+      "https://github.com/A2R-Lab"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+
+  <!-- Hero / Title Section -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">TAG-K: Tail-Averaged Greedy Kaczmarz for Computationally Efficient and Performant Online Inertial Parameter Estimation</h1>
+            <div class="is-size-5 publication-authors">
+              <div class="author-row">
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/shuo-sha-b07527293" target="_blank">Shuo Sha</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/anupam-bhakta" target="_blank">Anupam Bhakta</a><sup>2*</sup>,</span>
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/zhenyuan-jiang-84832523a/" target="_blank">Zhenyuan Jiang</a><sup>1*</sup>,</span>
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/kevinzqiu" target="_blank">Kevin Qiu</a><sup>1*</sup></span>
+              </div>
+              <div class="author-row">
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/ishaan-mahajan15" target="_blank">Ishaan Mahajan</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/gabriel-bravo-palacios" target="_blank">Gabriel Bravo-Palacios</a><sup>3,4</sup>,</span>
+                <span class="author-block">
+                  <a href="https://www.brianplancher.com/" target="_blank">Brian Plancher</a><sup>3,4</sup></span>
+              </div>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <div class="columns is-centered is-mobile" style="margin-bottom:0;">
+                <div class="column is-narrow has-text-left">
+                  <sup>1</sup>School of Applied Science, Columbia University<br>
+                  <sup>3</sup>Barnard College, Columbia University
+                </div>
+                <div class="column is-narrow has-text-left">
+                  <sup>2</sup>Columbia College, Columbia University<br>
+                  <sup>4</sup>Dartmouth College
+                </div>
+              </div>
+              <br>
+              <span class="author-block" style="font-size:0.9em;">IEEE International Conference on Robotics and Automation (ICRA) 2026</span>
+              <br>
+              <span class="eql-cntrb"><small><sup>*</sup>These authors contributed equally.</small></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- Paper PDF -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2510.04839" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <!-- GitHub -->
+                <span class="link-block">
+                  <a href="https://github.com/A2R-Lab/TAG-K" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- Documentation -->
+                <span class="link-block">
+                  <a href="docs/index.html" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-book"></i></span>
+                    <span>Docs</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero -->
+
+  <!-- Abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Accurate online inertial parameter estimation is essential for adaptive robotic control, enabling real-time adjustment to payload changes, environmental interactions, and system wear. Traditional methods such as Recursive Least Squares (RLS) and the Kalman Filter (KF) often struggle to track abrupt parameter shifts or incur high computational costs, limiting their effectiveness in dynamic environments and for computationally constrained robotic systems. As such, we introduce TAG-K, a lightweight extension of the Kaczmarz method that combines greedy randomized row selection for rapid convergence with tail averaging for robustness under noise and inconsistency. This design enables fast, stable parameter adaptation while retaining the low per-iteration complexity inherent to the Kaczmarz framework.
+            </p>
+            <p>
+              We evaluate TAG-K in synthetic benchmarks and quadrotor tracking tasks against RLS, KF, and other Kaczmarz variants. TAG-K achieves 1.5&times;&ndash;1.9&times; faster solve times on laptop-class CPUs and 4.8&times;&ndash;20.7&times; faster solve times on embedded microcontrollers. More importantly, these speedups are paired with improved resilience to measurement noise and a 25% reduction in estimation error, leading to nearly 2&times; better end-to-end tracking performance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Abstract -->
+
+  <!-- Key Results -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Key Results</h2>
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="content">
+            <div class="columns is-multiline">
+              <div class="column is-6">
+                <div class="box result-box">
+                  <h4 class="title is-5"><i class="fas fa-bolt result-icon"></i> Computational Speed</h4>
+                  <p><strong>1.5&times;&ndash;1.9&times;</strong> faster on laptop CPUs<br>
+                  <strong>4.8&times;&ndash;20.7&times;</strong> faster on embedded processors (Teensy 4.1)</p>
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="box result-box">
+                  <h4 class="title is-5"><i class="fas fa-crosshairs result-icon"></i> Estimation Accuracy</h4>
+                  <p><strong>~25%</strong> lower estimation error than RLS and KF baselines across all test scenarios</p>
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="box result-box">
+                  <h4 class="title is-5"><i class="fas fa-route result-icon"></i> Tracking Performance</h4>
+                  <p><strong>~2&times;</strong> better downstream trajectory tracking in closed-loop quadrotor control</p>
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="box result-box">
+                  <h4 class="title is-5"><i class="fas fa-microchip result-icon"></i> Embedded-Friendly</h4>
+                  <p>O(mn) per-iteration complexity, cache-friendly memory access, no matrix inversions required</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Key Results -->
+
+  <!-- Method Overview -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Method</h2>
+          <div class="content has-text-justified">
+            <p>
+              TAG-K solves streaming linear systems <strong>A&theta; &asymp; b</strong> arising from rigid-body dynamics. At each iteration, it:
+            </p>
+            <ol>
+              <li><strong>Greedy row selection:</strong> Picks the measurement row with the largest residual, focusing computational effort where it matters most.</li>
+              <li><strong>Kaczmarz update:</strong> Projects the current estimate onto the hyperplane defined by the selected row&mdash;a simple, cache-friendly vector operation with no matrix inversions.</li>
+              <li><strong>Tail averaging:</strong> Averages the last <em>k</em> iterates to damp oscillations and improve convergence, especially under noisy measurements.</li>
+            </ol>
+            <p>
+              This combination yields an estimator that is both <em>fast</em> (O(mn) per iteration, no linear solves) and <em>accurate</em> (greedy selection + averaging compensate for the single-row update limitation).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Method -->
+
+  <!-- Estimator Zoo -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Implemented Estimators</h2>
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="content">
+            <p class="has-text-centered">
+              The <code>online_estimators</code> Python package provides a unified interface for 16 online estimation algorithms.
+              <a href="docs/index.html">See the full API documentation &rarr;</a>
+            </p>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead>
+                  <tr><th>Class</th><th>Description</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>TAGK</code></td><td>Greedy Randomized Kaczmarz + tail averaging <strong>(ours)</strong></td></tr>
+                  <tr><td><code>TAGK_Tikh</code></td><td>TAGK + Tikhonov regularisation</td></tr>
+                  <tr><td><code>GRK</code></td><td>Greedy Randomized Kaczmarz (max-residual row)</td></tr>
+                  <tr><td><code>RK</code> / <code>TARK</code></td><td>Randomized Kaczmarz / Tail-Averaged RK</td></tr>
+                  <tr><td><code>RLS</code></td><td>Recursive Least Squares with forgetting factor</td></tr>
+                  <tr><td><code>KF</code></td><td>Kalman Filter (parameters-as-state formulation)</td></tr>
+                  <tr><td><code>REK</code></td><td>Randomized Extended Kaczmarz (inconsistent systems)</td></tr>
+                  <tr><td><code>IGRK</code> / <code>MGRK</code></td><td>Block Greedy / Momentum-accelerated GRK</td></tr>
+                  <tr><td><code>FDBK</code></td><td>Fully-Determined Block Kaczmarz</td></tr>
+                  <tr><td><code>RK_ColScaled</code></td><td>RK with column-norm scaling</td></tr>
+                  <tr><td><code>RK_Equi</code></td><td>RK with Ruiz equilibration</td></tr>
+                  <tr><td><code>RK_Tikh</code> / <code>RK_EquiTikh</code></td><td>RK + Tikhonov / + equilibration + Tikhonov</td></tr>
+                  <tr><td><code>GRK_Tikh</code></td><td>GRK + Tikhonov regularisation</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Estimator Zoo -->
+
+  <!-- Quick Start -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Quick Start</h2>
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="content">
+            <h4>Installation</h4>
+            <pre><code class="language-bash">git clone https://github.com/A2R-Lab/TAG-K.git
+cd TAG-K
+pip install -e .          # pure-Python
+pip install -e ".[cpp]"   # with C++ accelerated backends</code></pre>
+            <h4>Usage</h4>
+            <pre><code class="language-python">import numpy as np
+from online_estimators.estimators import TAGK
+
+rng = np.random.default_rng(0)
+n, m = 5, 50
+A = rng.standard_normal((m, n))
+x_true = rng.standard_normal(n)
+b = A @ x_true
+
+est = TAGK(n)
+for _ in range(500):
+    x_hat = est.iterate(A, b)
+
+print("Error:", np.linalg.norm(x_hat - x_true))</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Quick Start -->
+
+  </main>
+
+  <!-- BibTeX citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code class="nohighlight">@inproceedings{tagk2026,
+  title     = {TAG-K: Tail-Averaged Greedy Kaczmarz for Computationally
+               Efficient and Performant Online Inertial Parameter Estimation},
+  author    = {Shuo Sha and Anupam Bhakta and Zhenyuan Jiang and Kevin Qiu
+               and Ishaan Mahajan and Gabriel Bravo-Palacios and Brian Plancher},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2026}
+}</code></pre>
+    </div>
+  </section>
+  <!-- End BibTeX -->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>
+              adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              This website is licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Highlight.js syntax highlighting -->
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+</body>
+</html>
