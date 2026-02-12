@@ -209,6 +209,64 @@
   </section>
   <!-- End Hero -->
 
+  <!-- Performance Visualization -->
+  <section class="section">
+    <div class="container is-max-desktop" style="margin-top: 3rem;">
+      <h3 class="title is-4 has-text-centered" style="margin-bottom: 2rem;">Performance Visualization</h3>
+      <p class="has-text-centered" style="margin-bottom: 2rem;">
+        We replay representative tracking trajectories (Figure-8, circle, spiral, ellipse) with <b>unknown payload events</b> from our quadrotor experiments in Isaac Sim, comparing controllers using TAG-K as the online parameter estimator against the best-performing baseline. 
+        The first red marker denotes payload addition and the second denotes payload drop; the white curve is the reference trajectory. Performance is evaluated by tracking accuracy relative to the reference. 
+        <b>TAG-K adapts substantially faster</b> during both events, yielding more <b>reliable end-to-end performance</b>.
+      </p>
+      <div class="content">
+        <!-- Row 1 -->
+        <div class="columns is-centered" style="margin-bottom: 1.5rem;">
+          <div class="column is-6">
+            <div class="video-container">
+              <video autoplay controls muted loop playsinline style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px;">
+                <source src="demos/km_demos_fig8.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Figure 8</strong></p>
+            </div>
+          </div>
+          <div class="column is-6">
+            <div class="video-container">
+              <video autoplay controls muted loop playsinline style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px;">
+                <source src="demos/km_demos_circle.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Circle</strong></p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Row 2 -->
+        <div class="columns is-centered" style="margin-bottom: 1.5rem;">
+          <div class="column is-6">
+            <div class="video-container">
+              <video autoplay controls muted loop playsinline style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px;">
+                <source src="demos/km_demos_spiral.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Spiral</strong></p>
+            </div>
+          </div>
+          <div class="column is-6">
+            <div class="video-container">
+              <video autoplay controls muted loop playsinline style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px;">
+                <source src="demos/km_demos_ellipse.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Ellipse</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+  </section>
+  <!-- End Performance Visualization -->
+
   <!-- Abstract -->
   <section class="section hero is-light">
     <div class="container is-max-desktop">
@@ -266,66 +324,9 @@
           </div>
         </div>
       </div>
-      <!-- Performance Visualization -->
-      <div class="container is-max-desktop" style="margin-top: 3rem;">
-        <h3 class="title is-4 has-text-centered" style="margin-bottom: 2rem;">Performance Visualization</h3>
-        <p class="has-text-centered" style="margin-bottom: 2rem;">
-          We replay representative tracking trajectories (Figure-8, circle, spiral, ellipse) with unknown payload events from our quadrotor experiments in Isaac Sim, comparing controllers using TAG-K as the online parameter estimator against the best-performing baseline. 
-          The first red marker denotes payload addition and the second denotes payload drop; the white curve is the reference trajectory. Performance is evaluated by tracking accuracy relative to the reference. 
-          TAG-K adapts substantially faster during both events, yielding more reliable end-to-end performance.
-        </p>
-        <div class="content">
-          <!-- Row 1 -->
-          <div class="columns is-centered" style="margin-bottom: 1.5rem;">
-            <div class="column is-6">
-              <div class="video-container">
-                <video controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
-                  <source src="demos/km_demos_fig8.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Figure 8</strong></p>
-              </div>
-            </div>
-            <div class="column is-6">
-              <div class="video-container">
-                <video controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
-                  <source src="demos/km_demos_circle.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Circle</strong></p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Row 2 -->
-          <div class="columns is-centered" style="margin-bottom: 1.5rem;">
-            <div class="column is-6">
-              <div class="video-container">
-                <video controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
-                  <source src="demos/km_demos_spiral.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Spiral</strong></p>
-              </div>
-            </div>
-            <div class="column is-6">
-              <div class="video-container">
-                <video controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
-                  <source src="demos/km_demos_ellipse.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Ellipse</strong></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>    
-
     </div>
   </section>
   <!-- End Key Results -->
-
-
 
   <!-- Method Overview -->
   <section class="section hero is-light">
