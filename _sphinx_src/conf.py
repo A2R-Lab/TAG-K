@@ -73,6 +73,7 @@ html_theme_options = {
     "show_prev_next": True,
 }
 html_static_path = ["_static"]
+html_favicon = "_static/favicon.ico"
 html_title = "online_estimators"
 html_short_title = "online_estimators"
 html_show_sourcelink = False
