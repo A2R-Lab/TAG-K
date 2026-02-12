@@ -166,12 +166,6 @@ body {
 
 .video-grid {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .video-grid::before,
@@ -179,14 +173,13 @@ body {
   content: '';
   position: absolute;
   pointer-events: none;
-  z-index: 2;
+  z-index: 0;
 }
 
 .video-grid::before {
   top: 0;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
   border-left: 2px dotted var(--border-color);
 }
 
@@ -194,11 +187,11 @@ body {
   left: 0;
   right: 0;
   top: 50%;
-  transform: translateY(-50%);
   border-top: 2px dotted var(--border-color);
 }
 
-.video-container {
+.video-container,
+.video-grid p {
   position: relative;
   z-index: 1;
 }
