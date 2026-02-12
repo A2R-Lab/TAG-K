@@ -15,6 +15,7 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   --border-radius: 8px;
   --border-radius-lg: 12px;
+  --perf-video-height: 400px;
   --transition: all 0.3s ease;
   --gradient-accent: linear-gradient(135deg, #2563eb, #7c3aed);
 }
@@ -156,6 +157,51 @@ body {
 .result-icon {
   color: var(--primary-color);
   margin-right: 0.5rem;
+}
+
+/* ===== Performance Visualization ===== */
+.perf-viz {
+  margin-top: 3rem;
+}
+
+.video-grid {
+  position: relative;
+}
+
+.video-grid::before,
+.video-grid::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.video-grid::before {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: 2px dotted var(--border-color);
+}
+
+.video-grid::after {
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 2px dotted var(--border-color);
+}
+
+.video-container,
+.video-grid p {
+  position: relative;
+  z-index: 1;
+}
+
+.perf-video {
+  width: 100%;
+  height: var(--perf-video-height);
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  display: block;
 }
 
 /* ===== Table ===== */

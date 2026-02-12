@@ -140,7 +140,7 @@
             <div class="is-size-5 publication-authors">
               <div class="author-row">
                 <span class="author-block">
-                  <a href="https://www.linkedin.com/in/shuo-sha-b07527293" target="_blank">Shuo Sha</a><sup>1</sup>,</span>
+                  <a href="https://shuosha.github.io/" target="_blank">Shuo Sha</a><sup>1</sup>,</span>
                 <span class="author-block">
                   <a href="https://www.linkedin.com/in/anupam-bhakta" target="_blank">Anupam Bhakta</a><sup>2*</sup>,</span>
                 <span class="author-block">
@@ -211,20 +211,20 @@
 
   <!-- Performance Visualization -->
   <section class="section">
-    <div class="container is-max-desktop" style="margin-top: 3rem;">
-      <h3 class="title is-4 has-text-centered" style="margin-bottom: 2rem;">Performance Visualization</h3>
-      <p class="has-text-centered" style="margin-bottom: 2rem;">
+    <div class="container is-max-desktop perf-viz">
+      <h2 class="title is-3 has-text-centered">Performance Visualization</h2>
+      <p class="has-text-centered">
         We replay representative tracking trajectories (Figure-8, circle, spiral, ellipse) with <b>unknown payload events</b> from our quadrotor experiments in Isaac Sim, comparing controllers using TAG-K as the online parameter estimator against the best-performing baseline. 
         The first red marker denotes payload addition and the second denotes payload drop; the white curve is the reference trajectory. Performance is evaluated by tracking accuracy relative to the reference. 
         <b>TAG-K adapts substantially faster</b> during both events, yielding more <b>reliable end-to-end performance</b>.
       </p>
-      <div class="content">
+      <div class="content video-grid">
         <!-- Row 1 -->
         <div class="columns is-centered" style="margin-bottom: 1.5rem;">
           <div class="column is-6">
             <div class="video-container">
-              <video autoplay controls muted loop playsinline style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px;">
-                <source src="demos/km_demos_fig8.mp4" type="video/mp4">
+              <video autoplay controls muted loop playsinline preload="metadata" class="perf-video">
+                <source src="demos/fig8.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
               <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Figure 8</strong></p>
@@ -232,8 +232,8 @@
           </div>
           <div class="column is-6">
             <div class="video-container">
-              <video autoplay controls muted loop playsinline style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px;">
-                <source src="demos/km_demos_circle.mp4" type="video/mp4">
+              <video autoplay controls muted loop playsinline preload="metadata" class="perf-video">
+                <source src="demos/circle.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
               <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Circle</strong></p>
@@ -245,8 +245,8 @@
         <div class="columns is-centered" style="margin-bottom: 1.5rem;">
           <div class="column is-6">
             <div class="video-container">
-              <video autoplay controls muted loop playsinline style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px;">
-                <source src="demos/km_demos_spiral.mp4" type="video/mp4">
+              <video autoplay controls muted loop playsinline preload="metadata" class="perf-video">
+                <source src="demos/spiral.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
               <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Spiral</strong></p>
@@ -254,8 +254,8 @@
           </div>
           <div class="column is-6">
             <div class="video-container">
-              <video autoplay controls muted loop playsinline style="width: 100%; height: 400px; object-fit: cover; border-radius: 8px;">
-                <source src="demos/km_demos_ellipse.mp4" type="video/mp4">
+              <video autoplay controls muted loop playsinline preload="metadata" class="perf-video">
+                <source src="demos/ellipse.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
               <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Ellipse</strong></p>
