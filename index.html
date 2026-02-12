@@ -41,61 +41,7 @@
   <meta name="citation_publication_date" content="2026">
   <meta name="citation_conference_title" content="IEEE International Conference on Robotics and Automation (ICRA)">
 
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-  <title>TAG-K &mdash; Tail-Averaged Greedy Kaczmarz | ICRA 2026</title>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="shortcut icon" href="static/images/favicon.ico">
-
-  <!-- Critical CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-
-  <!-- Non-critical CSS -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- JS -->
-  <script defer src="static/js/index.js"></script>
-
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "TAG-K: Tail-Averaged Greedy Kaczmarz for Computationally Efficient and Performant Online Inertial Parameter Estimation",
-    "description": "TAG-K achieves 1.5x-1.9x faster execution on laptop CPUs, 4.8x-20.7x faster on embedded processors, and 25% lower estimation error than classical baselines.",
-    "author": [
-      {"@type": "Person", "name": "Shuo Sha", "url": "https://shuosha.github.io/", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
-      {"@type": "Person", "name": "Anupam Bhakta", "url": "https://www.linkedin.com/in/anupam-bhakta", "affiliation": {"@type": "Organization", "name": "Columbia College, Columbia University"}},
-      {"@type": "Person", "name": "Zhenyuan Jiang", "url": "https://www.linkedin.com/in/zhenyuan-jiang-84832523a/", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
-      {"@type": "Person", "name": "Kevin Qiu", "url": "https://www.linkedin.com/in/kevinzqiu", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
-      {"@type": "Person", "name": "Ishaan Mahajan", "url": "https://www.linkedin.com/in/ishaan-mahajan15", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
-      {"@type": "Person", "name": "Gabriel Bravo-Palacios", "url": "https://linkedin.com/in/gabriel-bravo-palacios", "affiliation": [{"@type": "Organization", "name": "Barnard College, Columbia University"}, {"@type": "Organization", "name": "Dartmouth College"}]},
-      {"@type": "Person", "name": "Brian Plancher", "url": "https://brianplancher.com/", "affiliation": [{"@type": "Organization", "name": "Barnard College, Columbia University"}, {"@type": "Organization", "name": "Dartmouth College"}]}
-    ],
-    "datePublished": "2026-01-01",
-    "publisher": {
-      "@type": "Organization",
+      </div>
       "name": "IEEE International Conference on Robotics and Automation (ICRA)"
     },
     "url": "http://a2r-lab.org/TAG-K",
@@ -313,6 +259,61 @@
                 <div class="box result-box">
                   <h4 class="title is-5"><i class="fas fa-microchip result-icon"></i> Embedded-Friendly</h4>
                   <p>O(mn) per-iteration complexity, cache-friendly memory access, no matrix inversions required</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Performance Visualization -->
+            <div style="margin-top: 3rem;">
+              <h3 class="title is-4 has-text-centered" style="margin-bottom: 2rem;">Performance Visualization</h3>
+              <p class="has-text-centered" style="margin-bottom: 2rem;">
+                We replay representative tracking trajectories (Figure-8, circle, spiral, ellipse) with unknown payload events from our quadrotor experiments in Isaac Sim, comparing controllers using TAG-K as the online parameter estimator against the best-performing baseline.
+                The first red marker denotes payload addition and the second denotes payload drop; the white curve is the reference trajectory. Performance is evaluated by tracking accuracy relative to the reference.
+                TAG-K adapts substantially faster during both events, yielding more reliable end-to-end performance.
+              </p>
+              <div class="content">
+                <!-- Row 1 -->
+                <div class="columns is-centered" style="margin-bottom: 1.5rem;">
+                  <div class="column is-6">
+                    <div class="video-container">
+                      <video autoplay controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+                        <source src="demos/km_demos_fig8.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Figure 8</strong></p>
+                    </div>
+                  </div>
+                  <div class="column is-6">
+                    <div class="video-container">
+                      <video autoplay controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+                        <source src="demos/km_demos_circle.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Circle</strong></p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Row 2 -->
+                <div class="columns is-centered" style="margin-bottom: 1.5rem;">
+                  <div class="column is-6">
+                    <div class="video-container">
+                      <video autoplay controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+                        <source src="demos/km_demos_spiral.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Spiral</strong></p>
+                    </div>
+                  </div>
+                  <div class="column is-6">
+                    <div class="video-container">
+                      <video autoplay controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+                        <source src="demos/km_demos_ellipse.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                      <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Ellipse</strong></p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
