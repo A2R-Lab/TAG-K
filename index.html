@@ -85,7 +85,7 @@
     "headline": "TAG-K: Tail-Averaged Greedy Kaczmarz for Computationally Efficient and Performant Online Inertial Parameter Estimation",
     "description": "TAG-K achieves 1.5x-1.9x faster execution on laptop CPUs, 4.8x-20.7x faster on embedded processors, and 25% lower estimation error than classical baselines.",
     "author": [
-      {"@type": "Person", "name": "Shuo Sha", "url": "https://www.linkedin.com/in/shuo-sha-b07527293", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
+      {"@type": "Person", "name": "Shuo Sha", "url": "https://shuosha.github.io/", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
       {"@type": "Person", "name": "Anupam Bhakta", "url": "https://www.linkedin.com/in/anupam-bhakta", "affiliation": {"@type": "Organization", "name": "Columbia College, Columbia University"}},
       {"@type": "Person", "name": "Zhenyuan Jiang", "url": "https://www.linkedin.com/in/zhenyuan-jiang-84832523a/", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
       {"@type": "Person", "name": "Kevin Qiu", "url": "https://www.linkedin.com/in/kevinzqiu", "affiliation": {"@type": "Organization", "name": "School of Applied Science, Columbia University"}},
@@ -204,8 +204,61 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div>      
+      <!-- Performance Visualization -->
+      <div class="container is-max-desktop" style="margin-top: 3rem;">
+        <h3 class="title is-4 has-text-centered" style="margin-bottom: 2rem;">Performance Visualization</h3>
+        <p class="has-text-centered" style="margin-bottom: 2rem;">
+          We replay representative tracking trajectories (Figure-8, circle, spiral, ellipse) with unknown payload events from our quadrotor experiments in Isaac Sim, comparing controllers using TAG-K as the online parameter estimator against the best-performing baseline. 
+          The first red marker denotes payload addition and the second denotes payload drop; the white curve is the reference trajectory. Performance is evaluated by tracking accuracy relative to the reference. 
+          TAG-K adapts substantially faster during both events, yielding more reliable end-to-end performance.
+        </p>
+        <div class="content">
+          <!-- Row 1 -->
+          <div class="columns is-centered" style="margin-bottom: 1.5rem;">
+            <div class="column is-6">
+              <div class="video-container">
+                <video controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+                  <source src="demos/km_demos_fig8.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Figure 8</strong></p>
+              </div>
+            </div>
+            <div class="column is-6">
+              <div class="video-container">
+                <video controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+                  <source src="demos/km_demos_circle.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Circle</strong></p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Row 2 -->
+          <div class="columns is-centered" style="margin-bottom: 1.5rem;">
+            <div class="column is-6">
+              <div class="video-container">
+                <video controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+                  <source src="demos/km_demos_spiral.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Spiral</strong></p>
+              </div>
+            </div>
+            <div class="column is-6">
+              <div class="video-container">
+                <video controls muted loop playsinline style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+                  <source src="demos/km_demos_ellipse.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Ellipse</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>    </div>
   </section>
   <!-- End Hero -->
 
@@ -266,9 +319,13 @@
           </div>
         </div>
       </div>
+
+
     </div>
   </section>
   <!-- End Key Results -->
+
+
 
   <!-- Method Overview -->
   <section class="section hero is-light">
@@ -340,7 +397,7 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Quick Start</h2>
       <div class="columns is-centered">
-        <div class="column is-10">
+        <div class="column is-12">
           <div class="content">
             <h4>Installation</h4>
             <pre><code class="language-bash">git clone https://github.com/A2R-Lab/TAG-K.git
