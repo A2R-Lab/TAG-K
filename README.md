@@ -46,6 +46,8 @@ TAG-K requires **Python >= 3.10**.
 
 ### With uv (recommended)
 
+Install it by following Astral’s official instructions: https://docs.astral.sh/uv/getting-started/installation/
+
 ```bash
 git clone https://github.com/A2R-Lab/TAG-K.git
 cd TAG-K
