@@ -211,54 +211,58 @@
 
   <!-- Performance Visualization -->
   <section class="section hero is-light">
-    <div class="container is-max-widescreen perf-viz">
-      <h2 class="title is-3 has-text-centered">Performance Visualization</h2>
-      <p class="has-text-centered">
-        <!-- We replay representative tracking trajectories (Figure-8, circle, spiral, ellipse) with <b>unknown payload events</b> from our quadrotor experiments in Isaac Sim, comparing controllers using TAG-K as the online parameter estimator against the best-performing baseline. 
-        The first red marker denotes payload addition and the second denotes payload drop; the white curve is the reference trajectory. Performance is evaluated by tracking accuracy relative to the reference. 
-        <b>TAG-K adapts substantially faster</b> during both events, yielding more <b>reliable end-to-end performance</b>. -->
-        Quadrotor controllers with TAG-K estimators outperform state-of-the-art baselines across diverse tracking trajectories with unknown payload events (red spheres). All videos are shown at 1x speed.      </p>
-      <div class="content video-grid">
-        <!-- Row 1 -->
-        <div class="columns is-centered" style="margin-bottom: 1.5rem;">
-          <div class="column is-6">
-            <div class="video-container">
-              <video autoplay controls muted loop playsinline preload="none" poster="static/demos/fig8.jpg" class="perf-video">
-                <source src="static/demos/fig8.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Figure 8</strong></p>
-            </div>
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Quadrotor Tracking Performance Visualization</h2>
+            <!-- We replay representative tracking trajectories (Figure-8, circle, spiral, ellipse) with <b>unknown payload events</b> from our quadrotor experiments in Isaac Sim, comparing controllers using TAG-K as the online parameter estimator against the best-performing baseline. 
+            The first red marker denotes payload addition and the second denotes payload drop; the white curve is the reference trajectory. Performance is evaluated by tracking accuracy relative to the reference. 
+            <b>TAG-K adapts substantially faster</b> during both events, yielding more <b>reliable end-to-end performance</b>. -->
+          <div class="content has-text-justified">
+          <p>
+            Quadrotor controllers with <b>TAG-K estimators</b> outperform state-of-the-art baselines across diverse tracking trajectories with <b>unknown payload events</b> (red spheres). 
+            All videos are shown at 1x speed.      
+          </p>
           </div>
-          <div class="column is-6">
-            <div class="video-container">
-              <video autoplay controls muted loop playsinline preload="none" poster="static/demos/circle.jpg" class="perf-video">
-                <source src="static/demos/circle.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Circle</strong></p>
+          <div class="content video-grid">
+            <!-- Row 1 -->
+            <div class="columns is-centered" style="margin-bottom: 1.5rem;">
+              <div class="column is-6">
+                <div class="video-container">
+                  <video autoplay controls muted loop playsinline preload="none" poster="static/demos/fig8.jpg" class="perf-video">
+                    <source src="static/demos/fig8.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="video-container">
+                  <video autoplay controls muted loop playsinline preload="none" poster="static/demos/circle.jpg" class="perf-video">
+                    <source src="static/demos/circle.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        
-        <!-- Row 2 -->
-        <div class="columns is-centered" style="margin-bottom: 1.5rem;">
-          <div class="column is-6">
-            <div class="video-container">
-              <video autoplay controls muted loop playsinline preload="none" poster="static/demos/spiral.jpg" class="perf-video">
-                <source src="static/demos/spiral.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Spiral</strong></p>
-            </div>
-          </div>
-          <div class="column is-6">
-            <div class="video-container">
-              <video autoplay controls muted loop playsinline preload="none" poster="static/demos/ellipse.jpg" class="perf-video">
-                <source src="static/demos/ellipse.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p class="has-text-centered" style="margin-top: 0.5rem;"><strong>Tracking - Ellipse</strong></p>
+            
+            <!-- Row 2 -->
+            <div class="columns is-centered" style="margin-bottom: 1.5rem;">
+              <div class="column is-6">
+                <div class="video-container">
+                  <video autoplay controls muted loop playsinline preload="none" poster="static/demos/spiral.jpg" class="perf-video">
+                    <source src="static/demos/spiral.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="video-container">
+                  <video autoplay controls muted loop playsinline preload="none" poster="static/demos/ellipse.jpg" class="perf-video">
+                    <source src="static/demos/ellipse.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
             </div>
           </div>
         </div>

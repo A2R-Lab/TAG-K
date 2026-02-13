@@ -25,6 +25,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.section {
+  padding: 2rem 1.5rem;   /* was 3rem */
+}
+
 body {
   font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text-primary);
@@ -91,7 +95,7 @@ body {
 }
 
 .hero-body {
-  padding: 4rem 0.75rem;
+  padding: 2rem 0.75rem;
 }
 
 /* ===== Publication Content ===== */
@@ -197,11 +201,12 @@ body {
 }
 
 .perf-video {
-  width: 100%;
-  height: var(--perf-video-height);
-  object-fit: cover;
+  width: 80%;
+  height: auto;
+  object-fit: contain;
   border-radius: var(--border-radius);
   display: block;
+  margin: 0 auto;   /* centers horizontally */
 }
 
 /* ===== Table ===== */
@@ -217,7 +222,7 @@ body {
 /* ===== Content ===== */
 .content.has-text-justified {
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.6;
   color: var(--text-secondary);
 }
 
