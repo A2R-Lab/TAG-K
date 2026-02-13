@@ -201,7 +201,7 @@ body {
 }
 
 .perf-video {
-  width: 80%;
+  width: 100%;
   height: auto;
   object-fit: contain;
   border-radius: var(--border-radius);
