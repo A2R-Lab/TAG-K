@@ -210,7 +210,7 @@ ty check online_estimators/
 | Path | Purpose |
 |---|---|
 | `online_estimators/` | Installable Python package |
-| `tests/` | pytest test suite (128 tests) |
+| `tests/` | pytest test suite |
 | `cpp/` | C++ estimator implementations + pybind11 bindings |
 | `python/` | Original research scripts (kept for reference) |
 | `*.ipynb` | Jupyter notebooks for exploration and plotting |
@@ -220,10 +220,6 @@ ty check online_estimators/
 ## Contributing
 
 Contributions are welcome. Please open an issue or submit a pull request.
-
-## License
-
-TBD
 
 ## Citation
 
