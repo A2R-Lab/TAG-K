@@ -223,10 +223,6 @@ ty check online_estimators/
 
 Contributions are welcome. Please open an issue or submit a pull request.
 
-## License
-
-TBD
-
 ## Citation
 
 If you use TAG-K in your research, please cite our ICRA 2026 paper:
