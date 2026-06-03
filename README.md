@@ -17,7 +17,7 @@ baselines, TAG-K achieves:
 - **25% lower** estimation error
 - **~2x better** end-to-end tracking performance
 
-For details, see our [ICRA 2026 paper](#citation).
+For details, see our [ICRA 2026 paper](https://arxiv.org/pdf/2510.04839).
 
 ---
 
